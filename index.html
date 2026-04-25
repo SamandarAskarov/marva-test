@@ -1,0 +1,2175 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Marva Dental Education</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+<style>
+/* ============================================================
+   CSS CUSTOM PROPERTIES & RESET
+   ============================================================ */
+:root {
+  --clr-bg:        #ffffff;
+  --clr-surface:   #f6f8fb;
+  --clr-border:    #e4e9f0;
+  --clr-accent:    #1e6fff;
+  --clr-accent-dk: #1454d6;
+  --clr-accent-lt: #e8f0ff;
+  --clr-teal:      #0fbfa8;
+  --clr-text:      #0d1420;
+  --clr-muted:     #6b7892;
+  --clr-white:     #ffffff;
+
+  --ff-display: 'DM Serif Display', serif;
+  --ff-body:    'Plus Jakarta Sans', sans-serif;
+
+  --sp-1:  8px;
+  --sp-2:  16px;
+  --sp-3:  24px;
+  --sp-4:  32px;
+  --sp-5:  40px;
+  --sp-6:  48px;
+  --sp-8:  64px;
+  --sp-10: 80px;
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --radius-full: 9999px;
+
+  --shadow-card: 0 4px 24px rgba(30,111,255,.08);
+  --shadow-hover: 0 8px 40px rgba(30,111,255,.16);
+
+  --nav-h: 72px;
+  --container: 1200px;
+
+  --transition: .22s cubic-bezier(.4,0,.2,1);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  font-family: var(--ff-body);
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--clr-text);
+  background: var(--clr-bg);
+  overflow-x: hidden;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+button { cursor: pointer; border: none; background: none; font: inherit; }
+input, select, textarea { font: inherit; }
+
+/* ============================================================
+   UTILITIES
+   ============================================================ */
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--sp-2);
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-1);
+  padding: 14px 28px;
+  border-radius: var(--radius-full);
+  font-weight: 700;
+  font-size: .95rem;
+  transition: background var(--transition), color var(--transition),
+              box-shadow var(--transition), transform var(--transition);
+  white-space: nowrap;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn-primary {
+  background: var(--clr-accent);
+  color: var(--clr-white);
+  box-shadow: 0 4px 18px rgba(30,111,255,.35);
+}
+.btn-primary:hover {
+  background: var(--clr-accent-dk);
+  box-shadow: 0 6px 24px rgba(30,111,255,.45);
+}
+.btn-outline {
+  background: transparent;
+  color: var(--clr-accent);
+  border: 2px solid var(--clr-accent);
+}
+.btn-outline:hover {
+  background: var(--clr-accent-lt);
+}
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--clr-accent);
+  margin-bottom: var(--sp-2);
+}
+.section-label::before {
+  content: '';
+  display: block;
+  width: 18px; height: 2px;
+  background: var(--clr-accent);
+  border-radius: 2px;
+}
+.section-title {
+  font-family: var(--ff-display);
+  font-size: clamp(1.7rem, 4vw, 2.6rem);
+  line-height: 1.2;
+  color: var(--clr-text);
+  margin-bottom: var(--sp-2);
+}
+.section-subtitle {
+  font-size: 1rem;
+  color: var(--clr-muted);
+  max-width: 580px;
+}
+.text-center { text-align: center; }
+.text-center .section-subtitle { margin-inline: auto; }
+
+/* Fade-in animations */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-up {
+  opacity: 0;
+  animation: fadeUp .6s ease forwards;
+}
+.fade-up.visible { animation-play-state: running; }
+
+/* ============================================================
+   HEADER / NAV
+   ============================================================ */
+.site-header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: var(--nav-h);
+  z-index: 1000;
+  background: rgba(255,255,255,.96);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--clr-border);
+  transition: box-shadow var(--transition);
+}
+.site-header.scrolled {
+  box-shadow: 0 4px 24px rgba(13,20,32,.08);
+}
+.header-inner {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-2);
+}
+
+/* Logo */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+.logo-icon {
+  width: 38px; height: 38px;
+  background: var(--clr-accent);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  color: white;
+  font-size: 18px;
+}
+.logo-text {
+  display: flex; flex-direction: column; line-height: 1.1;
+}
+.logo-text strong {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--clr-text);
+}
+.logo-text span {
+  font-size: .68rem;
+  font-weight: 600;
+  letter-spacing: .06em;
+  color: var(--clr-accent);
+  text-transform: uppercase;
+}
+
+/* Desktop Nav */
+.main-nav {
+  display: none;
+  align-items: center;
+  gap: var(--sp-3);
+}
+.main-nav a {
+  font-size: .9rem;
+  font-weight: 600;
+  color: var(--clr-muted);
+  transition: color var(--transition);
+  position: relative;
+}
+.main-nav a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 0;
+  width: 0; height: 2px;
+  background: var(--clr-accent);
+  border-radius: 2px;
+  transition: width var(--transition);
+}
+.main-nav a:hover { color: var(--clr-accent); }
+.main-nav a:hover::after { width: 100%; }
+
+/* Header right cluster */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+}
+
+/* Language switcher */
+.lang-switcher {
+  display: flex;
+  align-items: center;
+  background: var(--clr-surface);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-full);
+  padding: 3px;
+  gap: 2px;
+}
+.lang-switcher button {
+  padding: 5px 11px;
+  border-radius: var(--radius-full);
+  font-size: .78rem;
+  font-weight: 700;
+  color: var(--clr-muted);
+  transition: background var(--transition), color var(--transition);
+}
+.lang-switcher button.active {
+  background: var(--clr-accent);
+  color: var(--clr-white);
+}
+
+/* Phone CTA — hidden on xs */
+.header-phone {
+  display: none;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: .9rem;
+  color: var(--clr-text);
+  transition: color var(--transition);
+}
+.header-phone:hover { color: var(--clr-accent); }
+.header-phone svg { color: var(--clr-accent); }
+
+/* Hamburger */
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 42px; height: 42px;
+  gap: 5px;
+  border-radius: var(--radius-sm);
+  transition: background var(--transition);
+}
+.hamburger:hover { background: var(--clr-surface); }
+.hamburger span {
+  display: block;
+  width: 22px; height: 2px;
+  background: var(--clr-text);
+  border-radius: 2px;
+  transition: transform var(--transition), opacity var(--transition), width var(--transition);
+  transform-origin: center;
+}
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; width: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* Mobile nav overlay */
+.mobile-nav {
+  position: fixed;
+  inset: var(--nav-h) 0 0 0;
+  background: var(--clr-white);
+  z-index: 999;
+  padding: var(--sp-4) var(--sp-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  transform: translateX(100%);
+  transition: transform .32s cubic-bezier(.4,0,.2,1);
+  overflow-y: auto;
+  border-top: 1px solid var(--clr-border);
+}
+.mobile-nav.open { transform: translateX(0); }
+.mobile-nav a {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--clr-text);
+  padding: var(--sp-1) 0;
+  border-bottom: 1px solid var(--clr-border);
+  transition: color var(--transition);
+}
+.mobile-nav a:last-of-type { border-bottom: none; }
+.mobile-nav a:hover { color: var(--clr-accent); }
+.mobile-nav .mobile-cta {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-1);
+}
+.mobile-nav .mobile-cta .btn { justify-content: center; }
+.mobile-nav .mobile-phone {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--clr-accent);
+  padding: var(--sp-1) 0;
+}
+
+/* Overlay backdrop */
+.nav-backdrop {
+  display: none;
+  position: fixed;
+  inset: var(--nav-h) 0 0 0;
+  background: rgba(13,20,32,.35);
+  z-index: 998;
+}
+.nav-backdrop.visible { display: block; }
+
+/* ============================================================
+   RESPONSIVE — show desktop nav
+   ============================================================ */
+@media (min-width: 900px) {
+  .main-nav { display: flex; }
+  .hamburger { display: none; }
+  .header-phone { display: flex; }
+  .mobile-nav, .nav-backdrop { display: none !important; }
+}
+@media (min-width: 480px) {
+  .header-phone { display: flex; }
+  .container { padding-inline: var(--sp-3); }
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero {
+  padding-top: calc(var(--nav-h) + 56px);
+  padding-bottom: var(--sp-10);
+  background: linear-gradient(160deg, #f0f5ff 0%, #fff 60%);
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -120px; right: -120px;
+  width: 520px; height: 520px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(30,111,255,.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -80px; left: -80px;
+  width: 360px; height: 360px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(15,191,168,.1) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-inner {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sp-5);
+  align-items: center;
+  position: relative; z-index: 1;
+}
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--clr-accent-lt);
+  color: var(--clr-accent);
+  font-size: .8rem;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  margin-bottom: var(--sp-2);
+}
+.hero-tag .dot {
+  width: 7px; height: 7px;
+  background: var(--clr-teal);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: .6; transform: scale(1.4); }
+}
+.hero h1 {
+  font-family: var(--ff-display);
+  font-size: clamp(2rem, 6vw, 3.6rem);
+  line-height: 1.1;
+  color: var(--clr-text);
+  margin-bottom: var(--sp-2);
+}
+.hero h1 em {
+  font-style: italic;
+  color: var(--clr-accent);
+}
+.hero-sub {
+  font-size: 1.05rem;
+  color: var(--clr-muted);
+  max-width: 520px;
+  margin-bottom: var(--sp-4);
+}
+.hero-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+  margin-bottom: var(--sp-5);
+}
+.hero-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-3);
+}
+.stat-item {
+  display: flex;
+  flex-direction: column;
+}
+.stat-num {
+  font-family: var(--ff-display);
+  font-size: 2rem;
+  line-height: 1;
+  color: var(--clr-text);
+}
+.stat-num span { color: var(--clr-accent); }
+.stat-label {
+  font-size: .8rem;
+  font-weight: 600;
+  color: var(--clr-muted);
+  margin-top: 2px;
+}
+.stat-divider {
+  width: 1px;
+  background: var(--clr-border);
+  align-self: stretch;
+}
+
+/* Hero visual card */
+.hero-visual {
+  display: none;
+}
+.hero-card {
+  background: var(--clr-white);
+  border-radius: var(--radius-lg);
+  padding: var(--sp-4);
+  box-shadow: var(--shadow-hover);
+  position: relative;
+}
+.hero-card-badge {
+  position: absolute;
+  top: -16px; right: 24px;
+  background: var(--clr-teal);
+  color: white;
+  font-size: .78rem;
+  font-weight: 700;
+  padding: 8px 16px;
+  border-radius: var(--radius-full);
+}
+.hero-icon-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-2);
+}
+.hero-icon-item {
+  background: var(--clr-surface);
+  border-radius: var(--radius-md);
+  padding: var(--sp-2);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.hero-icon-item .icon { font-size: 1.6rem; }
+.hero-icon-item strong { font-size: .85rem; font-weight: 700; }
+.hero-icon-item p { font-size: .75rem; color: var(--clr-muted); }
+.hero-rating {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: var(--sp-3);
+  padding-top: var(--sp-3);
+  border-top: 1px solid var(--clr-border);
+}
+.hero-rating .stars { color: #f59e0b; font-size: 1rem; }
+.hero-rating strong { font-size: .9rem; font-weight: 700; }
+.hero-rating span { font-size: .8rem; color: var(--clr-muted); }
+
+@media (min-width: 860px) {
+  .hero-inner { grid-template-columns: 1fr 420px; }
+  .hero-visual { display: block; }
+}
+
+/* ============================================================
+   ABOUT
+   ============================================================ */
+.about {
+  padding: var(--sp-10) 0;
+  background: var(--clr-white);
+}
+.about-inner {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sp-5);
+  align-items: start;
+}
+.about-desc {
+  font-size: 1rem;
+  color: var(--clr-muted);
+  margin-bottom: var(--sp-4);
+  max-width: 520px;
+}
+.about-features {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-2);
+}
+.feature-card {
+  background: var(--clr-surface);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-md);
+  padding: var(--sp-3);
+  transition: box-shadow var(--transition), border-color var(--transition), transform var(--transition);
+}
+.feature-card:hover {
+  box-shadow: var(--shadow-card);
+  border-color: var(--clr-accent);
+  transform: translateY(-3px);
+}
+.feature-icon {
+  font-size: 1.8rem;
+  margin-bottom: var(--sp-1);
+}
+.feature-card h4 {
+  font-size: .9rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.feature-card p {
+  font-size: .8rem;
+  color: var(--clr-muted);
+}
+@media (min-width: 860px) {
+  .about-inner { grid-template-columns: 1fr 1fr; }
+}
+
+/* ============================================================
+   COURSES
+   ============================================================ */
+.courses {
+  padding: var(--sp-10) 0;
+  background: var(--clr-surface);
+}
+.courses-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sp-3);
+  margin-top: var(--sp-5);
+}
+.course-card {
+  background: var(--clr-white);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: box-shadow var(--transition), transform var(--transition);
+  display: flex;
+  flex-direction: column;
+}
+.course-card:hover {
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-4px);
+}
+.course-card.featured {
+  border-color: var(--clr-accent);
+  position: relative;
+}
+.course-badge {
+  position: absolute;
+  top: 16px; right: 16px;
+  background: var(--clr-accent);
+  color: white;
+  font-size: .72rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+}
+.course-header {
+  padding: var(--sp-3) var(--sp-3) 0;
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+}
+.course-emoji {
+  width: 52px; height: 52px;
+  background: var(--clr-accent-lt);
+  border-radius: var(--radius-md);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.6rem;
+}
+.course-header-text h3 {
+  font-size: 1rem;
+  font-weight: 700;
+}
+.course-duration {
+  font-size: .78rem;
+  color: var(--clr-muted);
+  font-weight: 600;
+}
+.course-body {
+  padding: var(--sp-2) var(--sp-3);
+  flex: 1;
+}
+.course-desc {
+  font-size: .88rem;
+  color: var(--clr-muted);
+  margin-bottom: var(--sp-2);
+}
+.course-features {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.course-features li {
+  font-size: .82rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--clr-text);
+}
+.course-features li::before {
+  content: '✓';
+  display: inline-flex;
+  width: 18px; height: 18px;
+  background: var(--clr-teal);
+  color: white;
+  border-radius: 50%;
+  align-items: center; justify-content: center;
+  font-size: .7rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.course-footer {
+  padding: var(--sp-3);
+  border-top: 1px solid var(--clr-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-2);
+  flex-wrap: wrap;
+}
+.course-price {
+  display: flex;
+  flex-direction: column;
+}
+.course-price strong {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--clr-accent);
+}
+.course-price span {
+  font-size: .75rem;
+  color: var(--clr-muted);
+}
+@media (min-width: 600px) {
+  .courses-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (min-width: 1000px) {
+  .courses-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* ============================================================
+   ADVANTAGES
+   ============================================================ */
+.advantages {
+  padding: var(--sp-10) 0;
+  background: var(--clr-white);
+}
+.adv-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-2);
+  margin-top: var(--sp-5);
+}
+.adv-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--sp-1);
+  padding: var(--sp-3);
+  background: var(--clr-surface);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-md);
+  transition: box-shadow var(--transition), border-color var(--transition);
+}
+.adv-item:hover {
+  box-shadow: var(--shadow-card);
+  border-color: var(--clr-accent);
+}
+.adv-num {
+  font-family: var(--ff-display);
+  font-size: 2.4rem;
+  line-height: 1;
+  color: var(--clr-accent-lt);
+  font-style: italic;
+}
+.adv-icon { font-size: 1.5rem; }
+.adv-item h4 { font-size: .9rem; font-weight: 700; }
+.adv-item p { font-size: .8rem; color: var(--clr-muted); }
+@media (min-width: 640px) {
+  .adv-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (min-width: 900px) {
+  .adv-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* ============================================================
+   TESTIMONIALS
+   ============================================================ */
+.testimonials {
+  padding: var(--sp-10) 0;
+  background: linear-gradient(160deg, #f0f5ff 0%, #fff 80%);
+}
+.reviews-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sp-3);
+  margin-top: var(--sp-5);
+}
+.review-card {
+  background: var(--clr-white);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-lg);
+  padding: var(--sp-4);
+  transition: box-shadow var(--transition), transform var(--transition);
+}
+.review-card:hover {
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-3px);
+}
+.review-stars {
+  color: #f59e0b;
+  font-size: 1rem;
+  margin-bottom: var(--sp-2);
+}
+.review-text {
+  font-size: .92rem;
+  color: var(--clr-text);
+  line-height: 1.7;
+  margin-bottom: var(--sp-3);
+  font-style: italic;
+}
+.review-author {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+}
+.review-avatar {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: var(--clr-accent);
+  display: flex; align-items: center; justify-content: center;
+  color: white;
+  font-weight: 700;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+.review-info strong { font-size: .88rem; font-weight: 700; display: block; }
+.review-info span { font-size: .78rem; color: var(--clr-muted); }
+@media (min-width: 640px) {
+  .reviews-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (min-width: 960px) {
+  .reviews-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* ============================================================
+   CONTACT INFO STRIP
+   ============================================================ */
+.contact-strip {
+  padding: var(--sp-10) 0;
+  background: var(--clr-white);
+}
+.contact-inner {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sp-4);
+}
+.contact-info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-2);
+}
+.contact-info-icon {
+  width: 48px; height: 48px;
+  background: var(--clr-accent-lt);
+  border-radius: var(--radius-md);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+.contact-info-item h4 {
+  font-size: .85rem;
+  font-weight: 700;
+  color: var(--clr-muted);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin-bottom: 4px;
+}
+.contact-info-item p, .contact-info-item a {
+  font-size: .95rem;
+  font-weight: 600;
+  color: var(--clr-text);
+}
+.contact-info-item a:hover { color: var(--clr-accent); }
+@media (min-width: 640px) {
+  .contact-inner { grid-template-columns: 1fr 1fr; }
+}
+@media (min-width: 960px) {
+  .contact-inner { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* ============================================================
+   LEAD FORM
+   ============================================================ */
+.lead-form-section {
+  padding: var(--sp-10) 0;
+  background: linear-gradient(135deg, #1e6fff 0%, #1454d6 100%);
+  position: relative;
+  overflow: hidden;
+}
+.lead-form-section::before {
+  content: '';
+  position: absolute;
+  top: -100px; right: -100px;
+  width: 400px; height: 400px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.06);
+  pointer-events: none;
+}
+.lead-form-section::after {
+  content: '';
+  position: absolute;
+  bottom: -80px; left: -80px;
+  width: 300px; height: 300px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.05);
+  pointer-events: none;
+}
+.lead-inner {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sp-5);
+  position: relative; z-index: 1;
+}
+.lead-copy .section-label {
+  color: rgba(255,255,255,.8);
+}
+.lead-copy .section-label::before { background: rgba(255,255,255,.8); }
+.lead-copy .section-title { color: white; }
+.lead-copy .section-subtitle { color: rgba(255,255,255,.75); }
+.lead-copy-perks {
+  margin-top: var(--sp-3);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.lead-perk {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: .9rem;
+  color: rgba(255,255,255,.9);
+}
+.lead-perk-icon {
+  width: 32px; height: 32px;
+  background: rgba(255,255,255,.15);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+.form-card {
+  background: var(--clr-white);
+  border-radius: var(--radius-lg);
+  padding: var(--sp-4);
+  box-shadow: 0 24px 80px rgba(0,0,0,.18);
+}
+.form-card h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: var(--sp-3);
+  color: var(--clr-text);
+}
+.form-group {
+  margin-bottom: var(--sp-2);
+}
+.form-group label {
+  display: block;
+  font-size: .83rem;
+  font-weight: 600;
+  color: var(--clr-text);
+  margin-bottom: 6px;
+}
+.form-group label .req { color: var(--clr-accent); }
+.form-control {
+  width: 100%;
+  padding: 13px 16px;
+  border: 1.5px solid var(--clr-border);
+  border-radius: var(--radius-md);
+  font-size: .9rem;
+  color: var(--clr-text);
+  background: var(--clr-white);
+  transition: border-color var(--transition), box-shadow var(--transition);
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.form-control:focus {
+  border-color: var(--clr-accent);
+  box-shadow: 0 0 0 3px rgba(30,111,255,.12);
+}
+.form-control.error { border-color: #ef4444; }
+.form-error {
+  font-size: .78rem;
+  color: #ef4444;
+  margin-top: 4px;
+  display: none;
+}
+.form-error.visible { display: block; }
+.form-submit-btn {
+  width: 100%;
+  padding: 15px;
+  background: var(--clr-accent);
+  color: white;
+  border-radius: var(--radius-md);
+  font-size: 1rem;
+  font-weight: 700;
+  transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+  position: relative;
+  overflow: hidden;
+  margin-top: var(--sp-1);
+}
+.form-submit-btn:hover:not(:disabled) {
+  background: var(--clr-accent-dk);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(30,111,255,.4);
+}
+.form-submit-btn:disabled { opacity: .7; cursor: not-allowed; }
+.form-submit-btn .btn-loading {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.form-submit-btn.loading .btn-text { display: none; }
+.form-submit-btn.loading .btn-loading { display: flex; }
+
+/* Spinner */
+.spinner {
+  width: 18px; height: 18px;
+  border: 2px solid rgba(255,255,255,.4);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin .7s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.form-success {
+  display: none;
+  text-align: center;
+  padding: var(--sp-5) var(--sp-3);
+}
+.form-success.visible { display: block; }
+.form-success .success-icon {
+  width: 64px; height: 64px;
+  background: var(--clr-teal);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.8rem;
+  margin: 0 auto var(--sp-3);
+}
+.form-success h4 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: var(--sp-1);
+  color: var(--clr-text);
+}
+.form-success p {
+  font-size: .9rem;
+  color: var(--clr-muted);
+}
+@media (min-width: 860px) {
+  .lead-inner { grid-template-columns: 1fr 460px; }
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.site-footer {
+  background: var(--clr-text);
+  color: rgba(255,255,255,.75);
+  padding: var(--sp-8) 0 var(--sp-4);
+}
+.footer-inner {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sp-5);
+  padding-bottom: var(--sp-5);
+  border-bottom: 1px solid rgba(255,255,255,.1);
+}
+.footer-brand .logo-text strong { color: white; }
+.footer-brand .logo-text span { color: rgba(255,255,255,.5); }
+.footer-brand .logo-icon { background: var(--clr-accent); }
+.footer-desc {
+  font-size: .87rem;
+  color: rgba(255,255,255,.55);
+  margin-top: var(--sp-2);
+  max-width: 280px;
+  line-height: 1.7;
+}
+.footer-nav h5 {
+  font-size: .8rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.45);
+  margin-bottom: var(--sp-2);
+}
+.footer-nav ul {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.footer-nav ul li a {
+  font-size: .88rem;
+  color: rgba(255,255,255,.7);
+  transition: color var(--transition);
+}
+.footer-nav ul li a:hover { color: white; }
+.footer-bottom {
+  padding-top: var(--sp-3);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--sp-2);
+  font-size: .8rem;
+  color: rgba(255,255,255,.4);
+}
+@media (min-width: 600px) {
+  .footer-inner { grid-template-columns: 1fr 1fr; }
+}
+@media (min-width: 900px) {
+  .footer-inner { grid-template-columns: 2fr 1fr 1fr 1fr; }
+}
+
+/* ============================================================
+   SECTION HEADER SPACING
+   ============================================================ */
+.section-head {
+  margin-bottom: var(--sp-5);
+}
+/* ============================================================
+   SCROLL ANIMATIONS
+   ============================================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity .55s ease, transform .55s ease;
+}
+.reveal.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: .1s; }
+.reveal-delay-2 { transition-delay: .2s; }
+.reveal-delay-3 { transition-delay: .3s; }
+.reveal-delay-4 { transition-delay: .4s; }
+</style>
+</head>
+
+<body>
+
+<!-- ============================================================
+     HEADER
+     ============================================================ -->
+<header class="site-header" id="siteHeader">
+  <div class="container">
+    <div class="header-inner">
+
+      <!-- Logo -->
+      <a href="#" class="logo" aria-label="Marva Dental Education">
+        <div class="logo-icon" aria-hidden="true">🦷</div>
+        <div class="logo-text">
+          <strong>Marva Dental</strong>
+          <span data-i18n="logo_sub">Education</span>
+        </div>
+      </a>
+
+      <!-- Desktop nav -->
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="#about" data-i18n="nav_about">Biz haqimizda</a>
+        <a href="#courses" data-i18n="nav_courses">Kurslar</a>
+        <a href="#advantages" data-i18n="nav_advantages">Afzalliklar</a>
+        <a href="#testimonials" data-i18n="nav_reviews">Sharhlar</a>
+        <a href="#contact" data-i18n="nav_contact">Aloqa</a>
+      </nav>
+
+      <!-- Actions -->
+      <div class="header-actions">
+        <!-- Language switcher -->
+        <div class="lang-switcher" role="group" aria-label="Language switcher">
+          <button class="active" data-lang="uz">UZ</button>
+          <button data-lang="ru">RU</button>
+          <button data-lang="en">EN</button>
+        </div>
+
+        <!-- Phone -->
+        <a href="tel:+998901234567" class="header-phone" aria-label="Phone number">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.56 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          +998 90 123 45 67
+        </a>
+
+        <!-- Hamburger -->
+        <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+</header>
+
+<!-- Mobile nav -->
+<nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation">
+  <a href="#about" data-i18n="nav_about">Biz haqimizda</a>
+  <a href="#courses" data-i18n="nav_courses">Kurslar</a>
+  <a href="#advantages" data-i18n="nav_advantages">Afzalliklar</a>
+  <a href="#testimonials" data-i18n="nav_reviews">Sharhlar</a>
+  <a href="#contact" data-i18n="nav_contact">Aloqa</a>
+  <div class="mobile-cta">
+    <a href="tel:+998901234567" class="mobile-phone">
+      📞 +998 90 123 45 67
+    </a>
+    <a href="#lead-form" class="btn btn-primary" data-i18n="nav_cta">Kursga yozilish</a>
+  </div>
+</nav>
+<div class="nav-backdrop" id="navBackdrop"></div>
+
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<section class="hero" id="home">
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-content">
+        <div class="hero-tag">
+          <span class="dot"></span>
+          <span data-i18n="hero_tag">Toshkentdagi №1 ta'lim markazi</span>
+        </div>
+        <h1 data-i18n="hero_title">Dental ta'lim<br><em>yangi darajaga</em></h1>
+        <p class="hero-sub" data-i18n="hero_sub">Professional stomatologiya bo'yicha zamonaviy kurslar. Tajribali o'qituvchilar bilan amaliy ko'nikmalarni egallang va karyerangizni o'zgartiring.</p>
+        <div class="hero-buttons">
+          <a href="#lead-form" class="btn btn-primary" data-i18n="hero_cta1">Kursga yozilish</a>
+          <a href="#contact" class="btn btn-outline" data-i18n="hero_cta2">Bog'lanish</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat-item">
+            <div class="stat-num">500<span>+</span></div>
+            <div class="stat-label" data-i18n="stat_graduates">Bitiruvchi</div>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <div class="stat-num">4.9<span>★</span></div>
+            <div class="stat-label" data-i18n="stat_rating">Reyting</div>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <div class="stat-num">5<span>+</span></div>
+            <div class="stat-label" data-i18n="stat_years">Yil tajriba</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual" aria-hidden="true">
+        <div class="hero-card">
+          <div class="hero-card-badge" data-i18n="hero_card_badge">🏆 №1 Marva</div>
+          <div class="hero-icon-grid">
+            <div class="hero-icon-item">
+              <div class="icon">🦷</div>
+              <strong data-i18n="hc1_title">Implantologiya</strong>
+              <p data-i18n="hc1_sub">12 haftalik kurs</p>
+            </div>
+            <div class="hero-icon-item">
+              <div class="icon">📋</div>
+              <strong data-i18n="hc2_title">Ortodontiya</strong>
+              <p data-i18n="hc2_sub">8 haftalik kurs</p>
+            </div>
+            <div class="hero-icon-item">
+              <div class="icon">💡</div>
+              <strong data-i18n="hc3_title">Estetik</strong>
+              <p data-i18n="hc3_sub">6 haftalik kurs</p>
+            </div>
+            <div class="hero-icon-item">
+              <div class="icon">🎓</div>
+              <strong data-i18n="hc4_title">Sertifikat</strong>
+              <p data-i18n="hc4_sub">Xalqaro tan olingan</p>
+            </div>
+          </div>
+          <div class="hero-rating">
+            <span class="stars">★★★★★</span>
+            <strong>4.9</strong>
+            <span data-i18n="hero_rating_label">(500+ sharh)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     ABOUT
+     ============================================================ -->
+<section class="about" id="about">
+  <div class="container">
+    <div class="about-inner">
+      <div class="about-text reveal">
+        <span class="section-label" data-i18n="about_label">Biz haqimizda</span>
+        <h2 class="section-title" data-i18n="about_title">Dental ta'limda ishonchli hamkor</h2>
+        <p class="about-desc" data-i18n="about_desc">Marva Dental Education — 2019-yildan beri faoliyat yuritib kelayotgan, O'zbekistondagi yetakchi dental ta'lim markazi. Biz stomatologiya sohasida zamonaviy bilim va amaliy ko'nikmalar berish orqali, shifokorlar va o'quvchilarning professional rivojlanishiga yordam beramiz.</p>
+        <a href="#lead-form" class="btn btn-primary" data-i18n="about_cta">Boshlash →</a>
+      </div>
+
+      <div class="about-features reveal reveal-delay-2">
+        <div class="feature-card">
+          <div class="feature-icon">🎓</div>
+          <h4 data-i18n="feat1_title">Amaliy ta'lim</h4>
+          <p data-i18n="feat1_desc">Real klinikalarda amaliyot, simulyatorlar va zamonaviy uskunalar bilan ishlash.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">👨‍⚕️</div>
+          <h4 data-i18n="feat2_title">Tajribali o'qituvchilar</h4>
+          <p data-i18n="feat2_desc">20+ yillik tajribaga ega xalqaro sertifikatli mutaxassislar.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📜</div>
+          <h4 data-i18n="feat3_title">Tan olingan sertifikat</h4>
+          <p data-i18n="feat3_desc">Xalqaro standartlarga mos, ish beruvchilar tomonidan qabul qilinadigan diplom.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🤝</div>
+          <h4 data-i18n="feat4_title">Ish joyi kafolati</h4>
+          <p data-i18n="feat4_desc">Bitiruvchilarning 85% kurs tugatgandan so'ng 1 oy ichida ish topadi.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     COURSES
+     ============================================================ -->
+<section class="courses" id="courses">
+  <div class="container">
+    <div class="section-head text-center reveal">
+      <span class="section-label" data-i18n="courses_label">Kurslar</span>
+      <h2 class="section-title" data-i18n="courses_title">Siz uchun kurslar</h2>
+      <p class="section-subtitle" data-i18n="courses_sub">Har bir bosqichdagi mutaxassislar uchun keng qamrovli dasturlar.</p>
+    </div>
+
+    <div class="courses-grid">
+      <!-- Course 1 -->
+      <div class="course-card reveal reveal-delay-1">
+        <div class="course-header">
+          <div class="course-emoji">🦷</div>
+          <div class="course-header-text">
+            <h3 data-i18n="c1_name">Implantologiya asoslari</h3>
+            <div class="course-duration" data-i18n="c1_dur">⏱ 12 hafta · 96 soat</div>
+          </div>
+        </div>
+        <div class="course-body">
+          <p class="course-desc" data-i18n="c1_desc">Dental implantlar bo'yicha kompleks kurs. Nazariy asoslar va amaliy ko'nikmalar birlashtirilgan.</p>
+          <ul class="course-features">
+            <li data-i18n="c1_f1">Implant turlari va tanlash</li>
+            <li data-i18n="c1_f2">Jarrohlik protokollari</li>
+            <li data-i18n="c1_f3">Protezirlash bosqichlari</li>
+            <li data-i18n="c1_f4">Asorat oldini olish</li>
+          </ul>
+        </div>
+        <div class="course-footer">
+          <div class="course-price">
+            <strong>3 500 000 <span style="font-size:.75rem;color:var(--clr-muted)">so'm</span></strong>
+            <span data-i18n="price_month">yoki oyiga 700 000 so'm</span>
+          </div>
+          <a href="#lead-form" class="btn btn-primary" data-i18n="course_enroll">Yozilish</a>
+        </div>
+      </div>
+
+      <!-- Course 2 — featured -->
+      <div class="course-card featured reveal reveal-delay-2">
+        <div class="course-badge" data-i18n="badge_popular">🔥 Mashhur</div>
+        <div class="course-header">
+          <div class="course-emoji">📋</div>
+          <div class="course-header-text">
+            <h3 data-i18n="c2_name">Ortodontiya — Breket tizimi</h3>
+            <div class="course-duration" data-i18n="c2_dur">⏱ 8 hafta · 64 soat</div>
+          </div>
+        </div>
+        <div class="course-body">
+          <p class="course-desc" data-i18n="c2_desc">Zamonaviy ortodontik usullar va breket tizimlarini o'rnatish bo'yicha intensiv kurs.</p>
+          <ul class="course-features">
+            <li data-i18n="c2_f1">Tashxis va rejalashtirish</li>
+            <li data-i18n="c2_f2">Breket o'rnatish texnikasi</li>
+            <li data-i18n="c2_f3">Korreksiya usullari</li>
+            <li data-i18n="c2_f4">Retensiyon bosqichi</li>
+          </ul>
+        </div>
+        <div class="course-footer">
+          <div class="course-price">
+            <strong>2 800 000 <span style="font-size:.75rem;color:var(--clr-muted)">so'm</span></strong>
+            <span data-i18n="price_month">yoki oyiga 560 000 so'm</span>
+          </div>
+          <a href="#lead-form" class="btn btn-primary" data-i18n="course_enroll">Yozilish</a>
+        </div>
+      </div>
+
+      <!-- Course 3 -->
+      <div class="course-card reveal reveal-delay-3">
+        <div class="course-header">
+          <div class="course-emoji">💡</div>
+          <div class="course-header-text">
+            <h3 data-i18n="c3_name">Estetik stomatologiya</h3>
+            <div class="course-duration" data-i18n="c3_dur">⏱ 6 hafta · 48 soat</div>
+          </div>
+        </div>
+        <div class="course-body">
+          <p class="course-desc" data-i18n="c3_desc">Tishlarni oqartirish, vinir va kompozit restavratsiya usullari bo'yicha kurs.</p>
+          <ul class="course-features">
+            <li data-i18n="c3_f1">Rangni tanlash va tahlil</li>
+            <li data-i18n="c3_f2">Vinir va luminer</li>
+            <li data-i18n="c3_f3">Kompozit restavratsiya</li>
+            <li data-i18n="c3_f4">Oqartirish texnikalari</li>
+          </ul>
+        </div>
+        <div class="course-footer">
+          <div class="course-price">
+            <strong>2 200 000 <span style="font-size:.75rem;color:var(--clr-muted)">so'm</span></strong>
+            <span data-i18n="price_month">yoki oyiga 440 000 so'm</span>
+          </div>
+          <a href="#lead-form" class="btn btn-primary" data-i18n="course_enroll">Yozilish</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     ADVANTAGES
+     ============================================================ -->
+<section class="advantages" id="advantages">
+  <div class="container">
+    <div class="section-head text-center reveal">
+      <span class="section-label" data-i18n="adv_label">Afzalliklar</span>
+      <h2 class="section-title" data-i18n="adv_title">Nima uchun Marva?</h2>
+      <p class="section-subtitle" data-i18n="adv_sub">Biz boshqalardan farqli narsalarni taklif etamiz.</p>
+    </div>
+    <div class="adv-grid">
+      <div class="adv-item reveal reveal-delay-1">
+        <div class="adv-icon">🏛️</div>
+        <h4 data-i18n="adv1_title">Zamonaviy klinika</h4>
+        <p data-i18n="adv1_desc">Eng yangi uskunalar va klinik muhit.</p>
+      </div>
+      <div class="adv-item reveal reveal-delay-2">
+        <div class="adv-icon">📚</div>
+        <h4 data-i18n="adv2_title">Tuzilgan dastur</h4>
+        <p data-i18n="adv2_desc">Xalqaro standartlarga mos o'quv rejasi.</p>
+      </div>
+      <div class="adv-item reveal reveal-delay-3">
+        <div class="adv-icon">👥</div>
+        <h4 data-i18n="adv3_title">Kichik guruhlar</h4>
+        <p data-i18n="adv3_desc">6-8 nafarlik guruhlar, har bir talabaga e'tibor.</p>
+      </div>
+      <div class="adv-item reveal reveal-delay-4">
+        <div class="adv-icon">🌐</div>
+        <h4 data-i18n="adv4_title">Xalqaro aloqalar</h4>
+        <p data-i18n="adv4_desc">Yevropaning yetakchi klinikalari bilan hamkorlik.</p>
+      </div>
+      <div class="adv-item reveal reveal-delay-1">
+        <div class="adv-icon">💳</div>
+        <h4 data-i18n="adv5_title">Qulay to'lov</h4>
+        <p data-i18n="adv5_desc">Bo'lib to'lash va chegirmalar mavjud.</p>
+      </div>
+      <div class="adv-item reveal reveal-delay-2">
+        <div class="adv-icon">🎓</div>
+        <h4 data-i18n="adv6_title">Maxsus sertifikat</h4>
+        <p data-i18n="adv6_desc">Xalqaro tan olingan diplom beriladi.</p>
+      </div>
+      <div class="adv-item reveal reveal-delay-3">
+        <div class="adv-icon">⚡</div>
+        <h4 data-i18n="adv7_title">Tez natija</h4>
+        <p data-i18n="adv7_desc">6-12 haftada professional daraja.</p>
+      </div>
+      <div class="adv-item reveal reveal-delay-4">
+        <div class="adv-icon">📞</div>
+        <h4 data-i18n="adv8_title">Mentorlik</h4>
+        <p data-i18n="adv8_desc">Kurs tugagandan keyin ham maslahat olish imkoni.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     TESTIMONIALS
+     ============================================================ -->
+<section class="testimonials" id="testimonials">
+  <div class="container">
+    <div class="section-head text-center reveal">
+      <span class="section-label" data-i18n="reviews_label">Sharhlar</span>
+      <h2 class="section-title" data-i18n="reviews_title">Bitiruvchilarimiz aytadi</h2>
+      <p class="section-subtitle" data-i18n="reviews_sub">Real tajriba va haqiqiy natijalar.</p>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card reveal reveal-delay-1">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text" data-i18n="r1_text">"Marva Dental — mening karyeramdagi eng muhim qadam. Implantologiya kursidan keyin klinikalarda ishga qabul qilindi va maoshim 2 barobar oshdi."</p>
+        <div class="review-author">
+          <div class="review-avatar">AK</div>
+          <div class="review-info">
+            <strong data-i18n="r1_name">Alisher Karimov</strong>
+            <span data-i18n="r1_pos">Implantolog shifokor</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card reveal reveal-delay-2">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text" data-i18n="r2_text">"O'qituvchilar juda professional. Har bir savolimga to'liq javob berishdi. Ortodontiya kursidan ko'p narsa o'rgandim, amaliyot juda foydali bo'ldi."</p>
+        <div class="review-author">
+          <div class="review-avatar" style="background:var(--clr-teal)">MU</div>
+          <div class="review-info">
+            <strong data-i18n="r2_name">Malika Umarova</strong>
+            <span data-i18n="r2_pos">Ortodont shifokor</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card reveal reveal-delay-3">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text" data-i18n="r3_text">"Estetik stomatologiya kursini tavsiya qilaman. Ilgari faqat asosiy amaliyotlarni bilar edim, endi vinir va kompozit restavratsiya qila olaman."</p>
+        <div class="review-author">
+          <div class="review-avatar" style="background:#8b5cf6">SR</div>
+          <div class="review-info">
+            <strong data-i18n="r3_name">Sardor Rahimov</strong>
+            <span data-i18n="r3_pos">Estetik stomatolog</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CONTACT INFO
+     ============================================================ -->
+<section class="contact-strip" id="contact">
+  <div class="container">
+    <div class="section-head text-center reveal">
+      <span class="section-label" data-i18n="contact_label">Aloqa</span>
+      <h2 class="section-title" data-i18n="contact_title">Biz bilan bog'laning</h2>
+    </div>
+    <div class="contact-inner">
+      <div class="contact-info-item reveal reveal-delay-1">
+        <div class="contact-info-icon">📍</div>
+        <div>
+          <h4 data-i18n="ci_addr_label">Manzil</h4>
+          <p data-i18n="ci_addr">Toshkent sh., Yunusobod tumani,<br>Amir Temur ko'chasi, 108-uy</p>
+        </div>
+      </div>
+      <div class="contact-info-item reveal reveal-delay-2">
+        <div class="contact-info-icon">📞</div>
+        <div>
+          <h4 data-i18n="ci_phone_label">Telefon</h4>
+          <a href="tel:+998901234567">+998 90 123 45 67</a><br>
+          <a href="tel:+998712345678">+998 71 234 56 78</a>
+        </div>
+      </div>
+      <div class="contact-info-item reveal reveal-delay-3">
+        <div class="contact-info-icon">🕐</div>
+        <div>
+          <h4 data-i18n="ci_hours_label">Ish vaqti</h4>
+          <p data-i18n="ci_hours">Dushanba – Shanba:<br>9:00 – 18:00</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     LEAD FORM
+     ============================================================ -->
+<section class="lead-form-section" id="lead-form">
+  <div class="container">
+    <div class="lead-inner">
+      <!-- Copy -->
+      <div class="lead-copy reveal">
+        <span class="section-label" data-i18n="form_label">Ariza</span>
+        <h2 class="section-title" data-i18n="form_title">Hoziroq yoziling</h2>
+        <p class="section-subtitle" data-i18n="form_sub">Kursga yoziling va bepul konsultatsiya oling. Mutaxassisimiz siz bilan bog'lanib, barcha savollaringizga javob beradi.</p>
+
+        <div class="lead-copy-perks">
+          <div class="lead-perk">
+            <div class="lead-perk-icon">✅</div>
+            <span data-i18n="perk1">Bepul konsultatsiya</span>
+          </div>
+          <div class="lead-perk">
+            <div class="lead-perk-icon">⚡</div>
+            <span data-i18n="perk2">1 soat ichida javob</span>
+          </div>
+          <div class="lead-perk">
+            <div class="lead-perk-icon">🎁</div>
+            <span data-i18n="perk3">Birinchi dars bepul</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Form card -->
+      <div class="form-card reveal reveal-delay-2">
+        <h3 data-i18n="form_card_title">Ariza qoldiring</h3>
+
+        <div id="formBody">
+          <form id="leadForm" novalidate>
+            <div class="form-group">
+              <label for="fname">
+                <span data-i18n="form_name">Ismingiz</span>
+                <span class="req"> *</span>
+              </label>
+              <input type="text" id="fname" name="name" class="form-control"
+                     autocomplete="given-name" data-i18n-placeholder="form_name_ph" placeholder="Ism Familiya" />
+              <div class="form-error" id="fnameError" data-i18n="err_name">Ismingizni kiriting</div>
+            </div>
+
+            <div class="form-group">
+              <label for="fphone">
+                <span data-i18n="form_phone">Telefon</span>
+                <span class="req"> *</span>
+              </label>
+              <input type="tel" id="fphone" name="phone" class="form-control"
+                     autocomplete="tel" data-i18n-placeholder="form_phone_ph" placeholder="+998 90 000 00 00" />
+              <div class="form-error" id="fphoneError" data-i18n="err_phone">To'g'ri telefon raqam kiriting</div>
+            </div>
+
+            <div class="form-group">
+              <label for="fcourse">
+                <span data-i18n="form_course">Kurs</span>
+                <span class="req"> *</span>
+              </label>
+              <select id="fcourse" name="course" class="form-control">
+                <option value="" data-i18n="form_course_ph">Kursni tanlang</option>
+                <option value="implant" data-i18n="c1_name">Implantologiya asoslari</option>
+                <option value="ortho" data-i18n="c2_name">Ortodontiya — Breket tizimi</option>
+                <option value="aesthetic" data-i18n="c3_name">Estetik stomatologiya</option>
+              </select>
+              <div class="form-error" id="fcourseError" data-i18n="err_course">Kursni tanlang</div>
+            </div>
+
+            <button type="submit" class="form-submit-btn" id="formSubmitBtn">
+              <span class="btn-text" data-i18n="form_submit">Ariza yuborish →</span>
+              <span class="btn-loading">
+                <span class="spinner"></span>
+                <span data-i18n="form_sending">Yuborilmoqda...</span>
+              </span>
+            </button>
+          </form>
+        </div>
+
+        <div class="form-success" id="formSuccess">
+          <div class="success-icon">✅</div>
+          <h4 data-i18n="success_title">Ariza qabul qilindi!</h4>
+          <p data-i18n="success_desc">Tez orada mutaxassisimiz siz bilan bog'lanadi. Rahmat!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer class="site-footer" id="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <!-- Brand -->
+      <div class="footer-brand">
+        <a href="#" class="logo" aria-label="Marva Dental Education">
+          <div class="logo-icon" aria-hidden="true">🦷</div>
+          <div class="logo-text">
+            <strong>Marva Dental</strong>
+            <span data-i18n="logo_sub">Education</span>
+          </div>
+        </a>
+        <p class="footer-desc" data-i18n="footer_desc">Toshkentdagi №1 dental ta'lim markazi. Professional kurslar va sertifikatsiya.</p>
+      </div>
+
+      <!-- Nav 1 -->
+      <div class="footer-nav">
+        <h5 data-i18n="footer_nav1">Navigatsiya</h5>
+        <ul>
+          <li><a href="#about" data-i18n="nav_about">Biz haqimizda</a></li>
+          <li><a href="#courses" data-i18n="nav_courses">Kurslar</a></li>
+          <li><a href="#advantages" data-i18n="nav_advantages">Afzalliklar</a></li>
+          <li><a href="#testimonials" data-i18n="nav_reviews">Sharhlar</a></li>
+        </ul>
+      </div>
+
+      <!-- Nav 2 -->
+      <div class="footer-nav">
+        <h5 data-i18n="footer_nav2">Kurslar</h5>
+        <ul>
+          <li><a href="#lead-form" data-i18n="c1_name">Implantologiya</a></li>
+          <li><a href="#lead-form" data-i18n="c2_name">Ortodontiya</a></li>
+          <li><a href="#lead-form" data-i18n="c3_name">Estetik</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div class="footer-nav">
+        <h5 data-i18n="nav_contact">Aloqa</h5>
+        <ul>
+          <li><a href="tel:+998901234567">+998 90 123 45 67</a></li>
+          <li><a href="mailto:info@marvadental.uz">info@marvadental.uz</a></li>
+          <li><a href="#contact" data-i18n="ci_addr_label">Manzil</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2024 Marva Dental Education. <span data-i18n="footer_rights">Barcha huquqlar himoyalangan.</span></span>
+      <span data-i18n="footer_made">Toshkent, O'zbekiston 🇺🇿</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================================================
+     JAVASCRIPT
+     ============================================================ -->
+<script>
+/* ─── i18n TRANSLATIONS ──────────────────────────────────────── */
+const i18n = {
+  uz: {
+    logo_sub: "Education",
+    nav_about: "Biz haqimizda", nav_courses: "Kurslar",
+    nav_advantages: "Afzalliklar", nav_reviews: "Sharhlar",
+    nav_contact: "Aloqa", nav_cta: "Kursga yozilish",
+
+    hero_tag: "Toshkentdagi №1 ta'lim markazi",
+    hero_title: "Dental ta'lim<br><em>yangi darajaga</em>",
+    hero_sub: "Professional stomatologiya bo'yicha zamonaviy kurslar. Tajribali o'qituvchilar bilan amaliy ko'nikmalarni egallang va karyerangizni o'zgartiring.",
+    hero_cta1: "Kursga yozilish", hero_cta2: "Bog'lanish",
+    stat_graduates: "Bitiruvchi", stat_rating: "Reyting", stat_years: "Yil tajriba",
+    hero_card_badge: "🏆 №1 Marva",
+    hc1_title: "Implantologiya", hc1_sub: "12 haftalik kurs",
+    hc2_title: "Ortodontiya", hc2_sub: "8 haftalik kurs",
+    hc3_title: "Estetik", hc3_sub: "6 haftalik kurs",
+    hc4_title: "Sertifikat", hc4_sub: "Xalqaro tan olingan",
+    hero_rating_label: "(500+ sharh)",
+
+    about_label: "Biz haqimizda",
+    about_title: "Dental ta'limda ishonchli hamkor",
+    about_desc: "Marva Dental Education — 2019-yildan beri faoliyat yuritib kelayotgan, O'zbekistondagi yetakchi dental ta'lim markazi. Biz stomatologiya sohasida zamonaviy bilim va amaliy ko'nikmalar berish orqali, shifokorlar va o'quvchilarning professional rivojlanishiga yordam beramiz.",
+    about_cta: "Boshlash →",
+    feat1_title: "Amaliy ta'lim", feat1_desc: "Real klinikalarda amaliyot, simulyatorlar va zamonaviy uskunalar bilan ishlash.",
+    feat2_title: "Tajribali o'qituvchilar", feat2_desc: "20+ yillik tajribaga ega xalqaro sertifikatli mutaxassislar.",
+    feat3_title: "Tan olingan sertifikat", feat3_desc: "Xalqaro standartlarga mos, ish beruvchilar tomonidan qabul qilinadigan diplom.",
+    feat4_title: "Ish joyi kafolati", feat4_desc: "Bitiruvchilarning 85% kurs tugatgandan so'ng 1 oy ichida ish topadi.",
+
+    courses_label: "Kurslar", courses_title: "Siz uchun kurslar",
+    courses_sub: "Har bir bosqichdagi mutaxassislar uchun keng qamrovli dasturlar.",
+    c1_name: "Implantologiya asoslari", c1_dur: "⏱ 12 hafta · 96 soat",
+    c1_desc: "Dental implantlar bo'yicha kompleks kurs. Nazariy asoslar va amaliy ko'nikmalar birlashtirilgan.",
+    c1_f1: "Implant turlari va tanlash", c1_f2: "Jarrohlik protokollari",
+    c1_f3: "Protezirlash bosqichlari", c1_f4: "Asorat oldini olish",
+    c2_name: "Ortodontiya — Breket tizimi", c2_dur: "⏱ 8 hafta · 64 soat",
+    c2_desc: "Zamonaviy ortodontik usullar va breket tizimlarini o'rnatish bo'yicha intensiv kurs.",
+    c2_f1: "Tashxis va rejalashtirish", c2_f2: "Breket o'rnatish texnikasi",
+    c2_f3: "Korreksiya usullari", c2_f4: "Retensiyon bosqichi",
+    c3_name: "Estetik stomatologiya", c3_dur: "⏱ 6 hafta · 48 soat",
+    c3_desc: "Tishlarni oqartirish, vinir va kompozit restavratsiya usullari bo'yicha kurs.",
+    c3_f1: "Rangni tanlash va tahlil", c3_f2: "Vinir va luminer",
+    c3_f3: "Kompozit restavratsiya", c3_f4: "Oqartirish texnikalari",
+    badge_popular: "🔥 Mashhur", price_month: "yoki oyiga", course_enroll: "Yozilish",
+
+    adv_label: "Afzalliklar", adv_title: "Nima uchun Marva?",
+    adv_sub: "Biz boshqalardan farqli narsalarni taklif etamiz.",
+    adv1_title: "Zamonaviy klinika", adv1_desc: "Eng yangi uskunalar va klinik muhit.",
+    adv2_title: "Tuzilgan dastur", adv2_desc: "Xalqaro standartlarga mos o'quv rejasi.",
+    adv3_title: "Kichik guruhlar", adv3_desc: "6-8 nafarlik guruhlar, har bir talabaga e'tibor.",
+    adv4_title: "Xalqaro aloqalar", adv4_desc: "Yevropaning yetakchi klinikalari bilan hamkorlik.",
+    adv5_title: "Qulay to'lov", adv5_desc: "Bo'lib to'lash va chegirmalar mavjud.",
+    adv6_title: "Maxsus sertifikat", adv6_desc: "Xalqaro tan olingan diplom beriladi.",
+    adv7_title: "Tez natija", adv7_desc: "6-12 haftada professional daraja.",
+    adv8_title: "Mentorlik", adv8_desc: "Kurs tugagandan keyin ham maslahat olish imkoni.",
+
+    reviews_label: "Sharhlar", reviews_title: "Bitiruvchilarimiz aytadi",
+    reviews_sub: "Real tajriba va haqiqiy natijalar.",
+    r1_text: '"Marva Dental — mening karyeramdagi eng muhim qadam. Implantologiya kursidan keyin klinikalarda ishga qabul qilindi va maoshim 2 barobar oshdi."',
+    r1_name: "Alisher Karimov", r1_pos: "Implantolog shifokor",
+    r2_text: '"O\'qituvchilar juda professional. Har bir savolimga to\'liq javob berishdi. Ortodontiya kursidan ko\'p narsa o\'rgandim, amaliyot juda foydali bo\'ldi."',
+    r2_name: "Malika Umarova", r2_pos: "Ortodont shifokor",
+    r3_text: '"Estetik stomatologiya kursini tavsiya qilaman. Ilgari faqat asosiy amaliyotlarni bilar edim, endi vinir va kompozit restavratsiya qila olaman."',
+    r3_name: "Sardor Rahimov", r3_pos: "Estetik stomatolog",
+
+    contact_label: "Aloqa", contact_title: "Biz bilan bog'laning",
+    ci_addr_label: "Manzil",
+    ci_addr: "Toshkent sh., Yunusobod tumani,<br>Amir Temur ko'chasi, 108-uy",
+    ci_phone_label: "Telefon", ci_hours_label: "Ish vaqti",
+    ci_hours: "Dushanba – Shanba:<br>9:00 – 18:00",
+
+    form_label: "Ariza", form_title: "Hoziroq yoziling",
+    form_sub: "Kursga yoziling va bepul konsultatsiya oling. Mutaxassisimiz siz bilan bog'lanib, barcha savollaringizga javob beradi.",
+    perk1: "Bepul konsultatsiya", perk2: "1 soat ichida javob", perk3: "Birinchi dars bepul",
+    form_card_title: "Ariza qoldiring",
+    form_name: "Ismingiz", form_name_ph: "Ism Familiya",
+    form_phone: "Telefon", form_phone_ph: "+998 90 000 00 00",
+    form_course: "Kurs", form_course_ph: "Kursni tanlang",
+    form_submit: "Ariza yuborish →", form_sending: "Yuborilmoqda...",
+    err_name: "Ismingizni kiriting", err_phone: "To'g'ri telefon raqam kiriting", err_course: "Kursni tanlang",
+    success_title: "Ariza qabul qilindi!", success_desc: "Tez orada mutaxassisimiz siz bilan bog'lanadi. Rahmat!",
+
+    footer_desc: "Toshkentdagi №1 dental ta'lim markazi. Professional kurslar va sertifikatsiya.",
+    footer_nav1: "Navigatsiya", footer_nav2: "Kurslar",
+    footer_rights: "Barcha huquqlar himoyalangan.", footer_made: "Toshkent, O'zbekiston 🇺🇿",
+  },
+
+  ru: {
+    logo_sub: "Образование",
+    nav_about: "О нас", nav_courses: "Курсы",
+    nav_advantages: "Преимущества", nav_reviews: "Отзывы",
+    nav_contact: "Контакты", nav_cta: "Записаться на курс",
+
+    hero_tag: "Образовательный центр №1 в Ташкенте",
+    hero_title: "Стоматологическое образование<br><em>нового уровня</em>",
+    hero_sub: "Современные курсы по профессиональной стоматологии. Получите практические навыки с опытными преподавателями и измените свою карьеру.",
+    hero_cta1: "Записаться на курс", hero_cta2: "Связаться",
+    stat_graduates: "Выпускников", stat_rating: "Рейтинг", stat_years: "Лет опыта",
+    hero_card_badge: "🏆 №1 Marva",
+    hc1_title: "Имплантология", hc1_sub: "12-недельный курс",
+    hc2_title: "Ортодонтия", hc2_sub: "8-недельный курс",
+    hc3_title: "Эстетика", hc3_sub: "6-недельный курс",
+    hc4_title: "Сертификат", hc4_sub: "Международно признан",
+    hero_rating_label: "(500+ отзывов)",
+
+    about_label: "О нас",
+    about_title: "Надёжный партнёр в стоматологическом образовании",
+    about_desc: "Marva Dental Education — ведущий центр стоматологического образования в Узбекистане, работающий с 2019 года. Мы помогаем врачам и студентам профессионально развиваться, предоставляя современные знания и практические навыки в области стоматологии.",
+    about_cta: "Начать →",
+    feat1_title: "Практическое обучение", feat1_desc: "Практика в реальных клиниках, работа с симуляторами и современным оборудованием.",
+    feat2_title: "Опытные преподаватели", feat2_desc: "Международно сертифицированные специалисты с 20+ летним опытом.",
+    feat3_title: "Признанный сертификат", feat3_desc: "Диплом, соответствующий международным стандартам и принимаемый работодателями.",
+    feat4_title: "Гарантия трудоустройства", feat4_desc: "85% выпускников находят работу в течение 1 месяца после окончания курса.",
+
+    courses_label: "Курсы", courses_title: "Курсы для вас",
+    courses_sub: "Комплексные программы для специалистов любого уровня.",
+    c1_name: "Основы имплантологии", c1_dur: "⏱ 12 недель · 96 часов",
+    c1_desc: "Комплексный курс по дентальным имплантам. Теоретические основы и практические навыки в сочетании.",
+    c1_f1: "Виды имплантов и выбор", c1_f2: "Хирургические протоколы",
+    c1_f3: "Этапы протезирования", c1_f4: "Профилактика осложнений",
+    c2_name: "Ортодонтия — Брекет-системы", c2_dur: "⏱ 8 недель · 64 часа",
+    c2_desc: "Интенсивный курс по современным ортодонтическим методам и установке брекет-систем.",
+    c2_f1: "Диагностика и планирование", c2_f2: "Техника установки брекетов",
+    c2_f3: "Методы коррекции", c2_f4: "Ретенционный этап",
+    c3_name: "Эстетическая стоматология", c3_dur: "⏱ 6 недель · 48 часов",
+    c3_desc: "Курс по отбеливанию зубов, винирам и методам композитной реставрации.",
+    c3_f1: "Подбор цвета и анализ", c3_f2: "Виниры и люминиры",
+    c3_f3: "Композитная реставрация", c3_f4: "Техники отбеливания",
+    badge_popular: "🔥 Популярный", price_month: "или в месяц", course_enroll: "Записаться",
+
+    adv_label: "Преимущества", adv_title: "Почему Marva?",
+    adv_sub: "Мы предлагаем то, чего нет у других.",
+    adv1_title: "Современная клиника", adv1_desc: "Новейшее оборудование и клиническая среда.",
+    adv2_title: "Структурированная программа", adv2_desc: "Учебный план, соответствующий международным стандартам.",
+    adv3_title: "Малые группы", adv3_desc: "Группы по 6-8 человек, внимание каждому студенту.",
+    adv4_title: "Международные связи", adv4_desc: "Партнёрство с ведущими клиниками Европы.",
+    adv5_title: "Удобная оплата", adv5_desc: "Доступна рассрочка и скидки.",
+    adv6_title: "Специальный сертификат", adv6_desc: "Выдаётся международно признанный диплом.",
+    adv7_title: "Быстрый результат", adv7_desc: "Профессиональный уровень за 6-12 недель.",
+    adv8_title: "Наставничество", adv8_desc: "Возможность получить консультацию после окончания курса.",
+
+    reviews_label: "Отзывы", reviews_title: "Говорят наши выпускники",
+    reviews_sub: "Реальный опыт и настоящие результаты.",
+    r1_text: '"Marva Dental — самый важный шаг в моей карьере. После курса по имплантологии меня приняли в клинику, и моя зарплата выросла вдвое."',
+    r1_name: "Алишер Каримов", r1_pos: "Врач-имплантолог",
+    r2_text: '"Преподаватели очень профессиональны. Отвечали на каждый мой вопрос. Узнал многое на курсе по ортодонтии, практика была очень полезной."',
+    r2_name: "Малика Умарова", r2_pos: "Врач-ортодонт",
+    r3_text: '"Рекомендую курс по эстетической стоматологии. Раньше знал только базовые процедуры, теперь делаю виниры и композитную реставрацию."',
+    r3_name: "Сардор Рахимов", r3_pos: "Эстетический стоматолог",
+
+    contact_label: "Контакты", contact_title: "Свяжитесь с нами",
+    ci_addr_label: "Адрес",
+    ci_addr: "г. Ташкент, Юнусабадский район,<br>ул. Амира Темура, 108",
+    ci_phone_label: "Телефон", ci_hours_label: "Часы работы",
+    ci_hours: "Понедельник – Суббота:<br>9:00 – 18:00",
+
+    form_label: "Заявка", form_title: "Запишитесь сейчас",
+    form_sub: "Запишитесь на курс и получите бесплатную консультацию. Наш специалист свяжется с вами и ответит на все вопросы.",
+    perk1: "Бесплатная консультация", perk2: "Ответ в течение 1 часа", perk3: "Первый урок бесплатно",
+    form_card_title: "Оставьте заявку",
+    form_name: "Ваше имя", form_name_ph: "Имя Фамилия",
+    form_phone: "Телефон", form_phone_ph: "+998 90 000 00 00",
+    form_course: "Курс", form_course_ph: "Выберите курс",
+    form_submit: "Отправить заявку →", form_sending: "Отправка...",
+    err_name: "Введите ваше имя", err_phone: "Введите корректный номер телефона", err_course: "Выберите курс",
+    success_title: "Заявка принята!", success_desc: "Наш специалист скоро свяжется с вами. Спасибо!",
+
+    footer_desc: "Центр стоматологического образования №1 в Ташкенте. Профессиональные курсы и сертификация.",
+    footer_nav1: "Навигация", footer_nav2: "Курсы",
+    footer_rights: "Все права защищены.", footer_made: "Ташкент, Узбекистан 🇺🇿",
+  },
+
+  en: {
+    logo_sub: "Education",
+    nav_about: "About", nav_courses: "Courses",
+    nav_advantages: "Benefits", nav_reviews: "Reviews",
+    nav_contact: "Contact", nav_cta: "Enroll Now",
+
+    hero_tag: "#1 Dental Education Center in Tashkent",
+    hero_title: "Dental Education<br><em>at a new level</em>",
+    hero_sub: "Modern courses in professional dentistry. Gain hands-on skills with experienced instructors and transform your career.",
+    hero_cta1: "Enroll Now", hero_cta2: "Contact Us",
+    stat_graduates: "Graduates", stat_rating: "Rating", stat_years: "Years of exp.",
+    hero_card_badge: "🏆 #1 Marva",
+    hc1_title: "Implantology", hc1_sub: "12-week course",
+    hc2_title: "Orthodontics", hc2_sub: "8-week course",
+    hc3_title: "Aesthetic", hc3_sub: "6-week course",
+    hc4_title: "Certificate", hc4_sub: "Internationally recognised",
+    hero_rating_label: "(500+ reviews)",
+
+    about_label: "About Us",
+    about_title: "Your trusted partner in dental education",
+    about_desc: "Marva Dental Education is Uzbekistan's leading dental education center, operating since 2019. We help doctors and students grow professionally by providing modern knowledge and practical skills in dentistry.",
+    about_cta: "Get started →",
+    feat1_title: "Hands-on training", feat1_desc: "Practice in real clinics, work with simulators and modern equipment.",
+    feat2_title: "Expert instructors", feat2_desc: "Internationally certified specialists with 20+ years of experience.",
+    feat3_title: "Recognised certificate", feat3_desc: "Diploma meeting international standards, accepted by employers.",
+    feat4_title: "Job placement", feat4_desc: "85% of graduates find a job within 1 month of completing the course.",
+
+    courses_label: "Courses", courses_title: "Courses for you",
+    courses_sub: "Comprehensive programs for specialists at every level.",
+    c1_name: "Implantology Fundamentals", c1_dur: "⏱ 12 weeks · 96 hours",
+    c1_desc: "Comprehensive course on dental implants combining theoretical foundations with practical skills.",
+    c1_f1: "Implant types & selection", c1_f2: "Surgical protocols",
+    c1_f3: "Prosthetic stages", c1_f4: "Complication prevention",
+    c2_name: "Orthodontics — Bracket Systems", c2_dur: "⏱ 8 weeks · 64 hours",
+    c2_desc: "Intensive course on modern orthodontic techniques and bracket system placement.",
+    c2_f1: "Diagnosis & planning", c2_f2: "Bracket placement technique",
+    c2_f3: "Correction methods", c2_f4: "Retention stage",
+    c3_name: "Aesthetic Dentistry", c3_dur: "⏱ 6 weeks · 48 hours",
+    c3_desc: "Course on teeth whitening, veneers, and composite restoration techniques.",
+    c3_f1: "Colour selection & analysis", c3_f2: "Veneers & lumineers",
+    c3_f3: "Composite restoration", c3_f4: "Whitening techniques",
+    badge_popular: "🔥 Popular", price_month: "or per month", course_enroll: "Enroll",
+
+    adv_label: "Benefits", adv_title: "Why Marva?",
+    adv_sub: "We offer things others don't.",
+    adv1_title: "Modern clinic", adv1_desc: "Latest equipment and clinical environment.",
+    adv2_title: "Structured program", adv2_desc: "Curriculum aligned with international standards.",
+    adv3_title: "Small groups", adv3_desc: "Groups of 6-8 people, attention for every student.",
+    adv4_title: "International links", adv4_desc: "Partnerships with leading European clinics.",
+    adv5_title: "Flexible payment", adv5_desc: "Instalment plans and discounts available.",
+    adv6_title: "Special certificate", adv6_desc: "Internationally recognised diploma issued.",
+    adv7_title: "Fast results", adv7_desc: "Professional level in 6-12 weeks.",
+    adv8_title: "Mentoring", adv8_desc: "Consulting available even after course completion.",
+
+    reviews_label: "Reviews", reviews_title: "Our graduates speak",
+    reviews_sub: "Real experience and genuine results.",
+    r1_text: '"Marva Dental is the most important step in my career. After the implantology course I was hired at a clinic and my salary doubled."',
+    r1_name: "Alisher Karimov", r1_pos: "Implantologist",
+    r2_text: '"The instructors are very professional. They answered every question I had. I learned a lot on the orthodontics course — the practical sessions were invaluable."',
+    r2_name: "Malika Umarova", r2_pos: "Orthodontist",
+    r3_text: '"I recommend the aesthetic dentistry course. Before I only knew basic procedures; now I can do veneers and composite restorations."',
+    r3_name: "Sardor Rahimov", r3_pos: "Aesthetic dentist",
+
+    contact_label: "Contact", contact_title: "Get in touch",
+    ci_addr_label: "Address",
+    ci_addr: "Tashkent, Yunusobod District,<br>Amir Temur Street, 108",
+    ci_phone_label: "Phone", ci_hours_label: "Working hours",
+    ci_hours: "Monday – Saturday:<br>9:00 AM – 6:00 PM",
+
+    form_label: "Apply", form_title: "Enroll today",
+    form_sub: "Enroll in a course and get a free consultation. Our specialist will contact you and answer all your questions.",
+    perk1: "Free consultation", perk2: "Reply within 1 hour", perk3: "First lesson free",
+    form_card_title: "Leave a request",
+    form_name: "Your name", form_name_ph: "First Last Name",
+    form_phone: "Phone", form_phone_ph: "+998 90 000 00 00",
+    form_course: "Course", form_course_ph: "Select a course",
+    form_submit: "Send request →", form_sending: "Sending...",
+    err_name: "Please enter your name", err_phone: "Please enter a valid phone number", err_course: "Please select a course",
+    success_title: "Request received!", success_desc: "Our specialist will contact you soon. Thank you!",
+
+    footer_desc: "#1 Dental education center in Tashkent. Professional courses and certification.",
+    footer_nav1: "Navigation", footer_nav2: "Courses",
+    footer_rights: "All rights reserved.", footer_made: "Tashkent, Uzbekistan 🇺🇿",
+  }
+};
+
+/* ─── LANGUAGE SWITCHER ──────────────────────────────────────── */
+let currentLang = 'uz';
+
+function applyLang(lang) {
+  currentLang = lang;
+  const t = i18n[lang];
+  if (!t) return;
+
+  // Text nodes
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (t[key] !== undefined) {
+      el.innerHTML = t[key];
+    }
+  });
+
+  // Placeholders
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const key = el.getAttribute('data-i18n-placeholder');
+    if (t[key] !== undefined) {
+      el.placeholder = t[key];
+    }
+  });
+
+  // Select first option
+  const selectEl = document.getElementById('fcourse');
+  if (selectEl) {
+    const opts = selectEl.querySelectorAll('option[data-i18n]');
+    opts.forEach(opt => {
+      const key = opt.getAttribute('data-i18n');
+      if (t[key]) opt.textContent = t[key];
+    });
+  }
+
+  // Update html lang attr
+  document.documentElement.lang = lang;
+
+  // Update switcher buttons active state
+  document.querySelectorAll('.lang-switcher button').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.lang === lang);
+  });
+}
+
+// Bind lang buttons
+document.querySelectorAll('.lang-switcher button').forEach(btn => {
+  btn.addEventListener('click', () => applyLang(btn.dataset.lang));
+});
+
+// Init with default
+applyLang('uz');
+
+/* ─── MOBILE MENU ────────────────────────────────────────────── */
+const hamburger   = document.getElementById('hamburger');
+const mobileNav   = document.getElementById('mobileNav');
+const navBackdrop = document.getElementById('navBackdrop');
+let menuOpen = false;
+
+function openMenu() {
+  menuOpen = true;
+  mobileNav.classList.add('open');
+  navBackdrop.classList.add('visible');
+  hamburger.classList.add('open');
+  hamburger.setAttribute('aria-expanded', 'true');
+  hamburger.setAttribute('aria-label', 'Close menu');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeMenu() {
+  menuOpen = false;
+  mobileNav.classList.remove('open');
+  navBackdrop.classList.remove('visible');
+  hamburger.classList.remove('open');
+  hamburger.setAttribute('aria-expanded', 'false');
+  hamburger.setAttribute('aria-label', 'Open menu');
+  document.body.style.overflow = '';
+}
+
+hamburger.addEventListener('click', () => {
+  menuOpen ? closeMenu() : openMenu();
+});
+
+navBackdrop.addEventListener('click', closeMenu);
+
+// Close when a nav link is clicked
+mobileNav.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', closeMenu);
+});
+
+// Close on Escape key
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && menuOpen) closeMenu();
+});
+
+/* ─── HEADER SCROLL EFFECT ───────────────────────────────────── */
+const siteHeader = document.getElementById('siteHeader');
+window.addEventListener('scroll', () => {
+  siteHeader.classList.toggle('scrolled', window.scrollY > 16);
+}, { passive: true });
+
+/* ─── SMOOTH SCROLL (for older browsers) ────────────────────── */
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    const href = this.getAttribute('href');
+    if (href === '#') return;
+    const target = document.querySelector(href);
+    if (!target) return;
+    e.preventDefault();
+    const top = target.getBoundingClientRect().top + window.scrollY - 80;
+    window.scrollTo({ top, behavior: 'smooth' });
+  });
+});
+
+/* ─── SCROLL REVEAL ──────────────────────────────────────────── */
+const revealObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('in-view');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+/* ─── LEAD FORM ──────────────────────────────────────────────── */
+const leadForm    = document.getElementById('leadForm');
+const formBody    = document.getElementById('formBody');
+const formSuccess = document.getElementById('formSuccess');
+const submitBtn   = document.getElementById('formSubmitBtn');
+
+function getField(id) { return document.getElementById(id); }
+
+function setError(fieldId, errorId, show) {
+  const field = getField(fieldId);
+  const error = getField(errorId);
+  if (!field || !error) return;
+  field.classList.toggle('error', show);
+  error.classList.toggle('visible', show);
+}
+
+function validateForm() {
+  const t = i18n[currentLang];
+  const name   = getField('fname').value.trim();
+  const phone  = getField('fphone').value.trim();
+  const course = getField('fcourse').value;
+
+  let valid = true;
+
+  // Name: at least 2 chars
+  const nameOk = name.length >= 2;
+  setError('fname', 'fnameError', !nameOk);
+  if (!nameOk) valid = false;
+
+  // Phone: digits + optional +, spaces, dashes, parentheses — at least 9 digits
+  const phoneDigits = phone.replace(/\D/g, '');
+  const phoneOk = phoneDigits.length >= 9;
+  setError('fphone', 'fphoneError', !phoneOk);
+  if (!phoneOk) valid = false;
+
+  // Course
+  const courseOk = course !== '';
+  setError('fcourse', 'fcourseError', !courseOk);
+  if (!courseOk) valid = false;
+
+  return valid;
+}
+
+// Clear error on input
+['fname','fphone','fcourse'].forEach(id => {
+  const el = getField(id);
+  if (!el) return;
+  const event = el.tagName === 'SELECT' ? 'change' : 'input';
+  el.addEventListener(event, () => {
+    el.classList.remove('error');
+    const errEl = document.getElementById(id + 'Error');
+    if (errEl) errEl.classList.remove('visible');
+  });
+});
+
+leadForm.addEventListener('submit', async function(e) {
+  e.preventDefault();
+
+  if (!validateForm()) return;
+
+  // ── Loading state ──
+  submitBtn.disabled = true;
+  submitBtn.classList.add('loading');
+
+  const payload = {
+    name:   getField('fname').value.trim(),
+    phone:  getField('fphone').value.trim(),
+    course: getField('fcourse').value,
+    lang:   currentLang,
+    source: 'Marva Dental Website',
+    timestamp: new Date().toISOString()
+  };
+
+  
+  const BOT_TOKEN = '8670313117:AAGbBBFfAHlSy4ABJCvE7HDGc2JOY7RF6_c';
+  const CHAT_ID   = '1366945441';
+  const message   = `
+📋 Yangi ariza / Новая заявка / New lead
+👤 Ism: ${payload.name}
+📞 Tel: ${payload.phone}
+🎓 Kurs: ${payload.course}
+🌐 Til: ${payload.lang}
+🕐 Vaqt: ${payload.timestamp}
+  `.trim();
+
+  try {
+    await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ chat_id: CHAT_ID, text: message })
+    });
+  } catch (err) {
+    console.error('Telegram send failed:', err);
+  }
+
+  // Simulate async submission (replace with real API call above)
+  await new Promise(resolve => setTimeout(resolve, 1200));
+
+  // ── Success ──
+  submitBtn.disabled = false;
+  submitBtn.classList.remove('loading');
+  formBody.style.display = 'none';
+  formSuccess.classList.add('visible');
+
+  // Optionally reset form after delay
+  setTimeout(() => {
+    leadForm.reset();
+  }, 300);
+});
+</script>
+</body>
+</html>
