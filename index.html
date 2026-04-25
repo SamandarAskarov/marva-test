@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Marva Dental Education – Professional Dental Training in Tashkent</title>
+  <meta name="description" content="Marva Dental Education – Toshkentdagi eng yaxshi stomatologik ta'lim markazi. Tish texniklik, modelirovka va metall-keramika kurslari." />
+  <meta name="keywords" content="dental education tashkent, tish texniklik kursi, dental lab courses uzbekistan, marva dental" />
+  <meta property="og:title" content="Marva Dental Education" />
+  <meta property="og:description" content="Professional Dental Education in Tashkent, Uzbekistan" />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --navy: #0a1628;
+      --blue-deep: #0d2b5e;
+      --blue-mid: #1a4a9c;
+      --blue-bright: #2563eb;
+      --blue-light: #60a5fa;
+      --blue-pale: #dbeafe;
+      --accent: #38bdf8;
+      --white: #ffffff;
+      --off-white: #f8faff;
+      --gray-soft: #e8f0fe;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--white);
+      color: var(--navy);
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4 { font-family: 'Syne', sans-serif; }
+
+    /* ─── NAVBAR ─── */
+    #navbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      transition: all 0.4s ease;
+      padding: 20px 0;
+    }
+    #navbar.scrolled {
+      background: rgba(10,22,40,0.97);
+      backdrop-filter: blur(16px);
+      padding: 12px 0;
+      box-shadow: 0 4px 30px rgba(0,0,0,0.3);
+    }
+    .nav-link {
+      position: relative; color: rgba(255,255,255,0.85);
+      font-size: 0.875rem; font-weight: 500; letter-spacing: 0.02em;
+      transition: color 0.3s;
+    }
+    .nav-link::after {
+      content: ''; position: absolute; bottom: -3px; left: 0; width: 0; height: 2px;
+      background: var(--accent); transition: width 0.3s;
+    }
+    .nav-link:hover { color: #fff; }
+    .nav-link:hover::after { width: 100%; }
+
+    /* Language switcher */
+    .lang-btn {
+      padding: 4px 10px; border-radius: 4px; font-size: 0.75rem;
+      font-weight: 600; letter-spacing: 0.05em; cursor: pointer;
+      color: rgba(255,255,255,0.6); transition: all 0.25s;
+      border: none; background: transparent;
+    }
+    .lang-btn.active, .lang-btn:hover {
+      color: #fff; background: rgba(96,165,250,0.2);
+    }
+
+    /* ─── HERO ─── */
+    #hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #030d1e 0%, #0a1f4e 40%, #0d2b6e 70%, #0e3080 100%);
+      position: relative; overflow: hidden;
+      display: flex; align-items: center;
+    }
+    .hero-grid {
+      position: absolute; inset: 0; opacity: 0.06;
+      background-image:
+        linear-gradient(rgba(96,165,250,1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(96,165,250,1) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .hero-glow {
+      position: absolute; border-radius: 50%; filter: blur(80px); pointer-events: none;
+    }
+    .hero-glow-1 {
+      width: 600px; height: 600px; top: -100px; right: -100px;
+      background: radial-gradient(circle, rgba(37,99,235,0.35) 0%, transparent 70%);
+    }
+    .hero-glow-2 {
+      width: 400px; height: 400px; bottom: 0; left: -100px;
+      background: radial-gradient(circle, rgba(56,189,248,0.2) 0%, transparent 70%);
+    }
+    .hero-circle {
+      position: absolute; border-radius: 50%; border: 1px solid rgba(96,165,250,0.12);
+      animation: heroRotate 20s linear infinite;
+    }
+    @keyframes heroRotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    .tooth-icon {
+      position: absolute; opacity: 0.05; font-size: 200px;
+      right: 5%; top: 50%; transform: translateY(-50%);
+      pointer-events: none; line-height: 1;
+    }
+
+    /* ─── FADE-IN ANIMATIONS ─── */
+    .fade-up {
+      opacity: 0; transform: translateY(40px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+    .fade-left {
+      opacity: 0; transform: translateX(-40px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-left.visible { opacity: 1; transform: translateX(0); }
+    .fade-right {
+      opacity: 0; transform: translateX(40px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-right.visible { opacity: 1; transform: translateX(0); }
+
+    /* Stagger delays */
+    .delay-1 { transition-delay: 0.1s; }
+    .delay-2 { transition-delay: 0.2s; }
+    .delay-3 { transition-delay: 0.3s; }
+    .delay-4 { transition-delay: 0.4s; }
+    .delay-5 { transition-delay: 0.5s; }
+
+    /* ─── BUTTONS ─── */
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      color: #fff; font-family: 'Syne', sans-serif;
+      font-weight: 600; font-size: 0.9rem; letter-spacing: 0.03em;
+      padding: 14px 28px; border-radius: 8px; border: none; cursor: pointer;
+      transition: all 0.3s; box-shadow: 0 4px 20px rgba(37,99,235,0.4);
+      text-decoration: none;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(37,99,235,0.5);
+      background: linear-gradient(135deg, #3b82f6, #2563eb);
+    }
+    .btn-outline {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: transparent; color: #fff;
+      font-family: 'Syne', sans-serif; font-weight: 600;
+      font-size: 0.9rem; letter-spacing: 0.03em;
+      padding: 13px 28px; border-radius: 8px;
+      border: 1.5px solid rgba(255,255,255,0.4); cursor: pointer;
+      transition: all 0.3s; text-decoration: none;
+    }
+    .btn-outline:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: rgba(255,255,255,0.8);
+      transform: translateY(-2px);
+    }
+    .btn-accent {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: linear-gradient(135deg, #0ea5e9, #0284c7);
+      color: #fff; font-family: 'Syne', sans-serif;
+      font-weight: 600; font-size: 0.85rem;
+      padding: 11px 22px; border-radius: 7px; border: none; cursor: pointer;
+      transition: all 0.3s; box-shadow: 0 4px 15px rgba(14,165,233,0.35);
+      text-decoration: none;
+    }
+    .btn-accent:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 22px rgba(14,165,233,0.5);
+    }
+
+    /* ─── SECTION HEADINGS ─── */
+    .section-tag {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+      color: #1d4ed8; font-size: 0.78rem; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 6px 16px; border-radius: 50px;
+    }
+    .section-title {
+      font-family: 'Syne', sans-serif; font-weight: 800;
+      color: var(--navy); line-height: 1.15;
+    }
+    .gradient-text {
+      background: linear-gradient(135deg, #1d4ed8, #0ea5e9);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ─── STATS BAR ─── */
+    .stats-bar {
+      background: linear-gradient(135deg, #0a1628, #0d2b5e);
+      border-top: 1px solid rgba(96,165,250,0.2);
+      border-bottom: 1px solid rgba(96,165,250,0.2);
+    }
+    .stat-item { border-right: 1px solid rgba(96,165,250,0.15); }
+    .stat-item:last-child { border-right: none; }
+
+    /* ─── ABOUT SECTION ─── */
+    #about { background: var(--off-white); }
+    .about-feature {
+      display: flex; gap: 16px; padding: 20px;
+      background: #fff; border-radius: 12px;
+      border: 1px solid #e8f0fe;
+      transition: all 0.3s;
+      box-shadow: 0 2px 8px rgba(10,22,40,0.05);
+    }
+    .about-feature:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(37,99,235,0.12);
+      border-color: #bfdbfe;
+    }
+    .about-icon {
+      width: 48px; height: 48px; border-radius: 12px; flex-shrink: 0;
+      background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px;
+    }
+
+    /* ─── COURSES ─── */
+    #courses { background: #fff; }
+    .course-card {
+      background: #fff; border-radius: 16px;
+      border: 1px solid #e8f0fe;
+      overflow: hidden;
+      transition: all 0.35s;
+      box-shadow: 0 4px 15px rgba(10,22,40,0.07);
+    }
+    .course-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 50px rgba(37,99,235,0.15);
+      border-color: #93c5fd;
+    }
+    .course-card-header {
+      padding: 28px 28px 20px;
+      background: linear-gradient(135deg, #0a1628, #0d2b5e);
+      position: relative; overflow: hidden;
+    }
+    .course-card-header::before {
+      content: ''; position: absolute; top: -30px; right: -30px;
+      width: 120px; height: 120px; border-radius: 50%;
+      background: rgba(96,165,250,0.1);
+    }
+    .course-badge {
+      display: inline-block; padding: 4px 12px; border-radius: 50px;
+      font-size: 0.7rem; font-weight: 600; letter-spacing: 0.06em;
+      text-transform: uppercase; margin-bottom: 12px;
+    }
+    .course-price {
+      font-family: 'Syne', sans-serif; font-size: 1.5rem;
+      font-weight: 800; color: #fff;
+    }
+    .course-price-label { font-size: 0.75rem; color: rgba(255,255,255,0.5); }
+    .course-body { padding: 24px 28px 28px; }
+    .course-feature {
+      display: flex; align-items: center; gap: 10px;
+      color: #475569; font-size: 0.875rem; padding: 6px 0;
+      border-bottom: 1px solid #f1f5f9;
+    }
+    .course-feature:last-of-type { border-bottom: none; }
+    .check-icon { color: #2563eb; font-size: 14px; flex-shrink: 0; }
+
+    /* ─── ADVANTAGES ─── */
+    #advantages { background: linear-gradient(135deg, #030d1e 0%, #0a1f4e 100%); }
+    .adv-card {
+      padding: 32px 28px; border-radius: 16px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(96,165,250,0.15);
+      transition: all 0.35s;
+      text-align: center;
+    }
+    .adv-card:hover {
+      background: rgba(37,99,235,0.15);
+      border-color: rgba(96,165,250,0.4);
+      transform: translateY(-4px);
+    }
+    .adv-icon-wrap {
+      width: 64px; height: 64px; border-radius: 16px; margin: 0 auto 20px;
+      background: linear-gradient(135deg, rgba(37,99,235,0.3), rgba(14,165,233,0.3));
+      border: 1px solid rgba(96,165,250,0.25);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 28px;
+    }
+
+    /* ─── TESTIMONIALS ─── */
+    #testimonials { background: var(--off-white); }
+    .testimonial-card {
+      background: #fff; border-radius: 16px;
+      padding: 32px; border: 1px solid #e8f0fe;
+      box-shadow: 0 4px 15px rgba(10,22,40,0.06);
+      transition: all 0.35s; position: relative;
+    }
+    .testimonial-card::before {
+      content: '"'; font-family: 'Syne', sans-serif;
+      position: absolute; top: 16px; left: 24px;
+      font-size: 80px; color: #dbeafe; line-height: 1;
+      pointer-events: none;
+    }
+    .testimonial-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(37,99,235,0.12);
+      border-color: #bfdbfe;
+    }
+    .stars { color: #f59e0b; font-size: 1rem; letter-spacing: 2px; }
+    .avatar-circle {
+      width: 48px; height: 48px; border-radius: 50%;
+      background: linear-gradient(135deg, #2563eb, #0ea5e9);
+      display: flex; align-items: center; justify-content: center;
+      color: #fff; font-family: 'Syne', sans-serif; font-weight: 700;
+      font-size: 1.1rem; flex-shrink: 0;
+    }
+
+    /* ─── CONTACT ─── */
+    #contact { background: #fff; }
+    .contact-card {
+      background: linear-gradient(135deg, #0a1628, #0d2b5e);
+      border-radius: 20px; padding: 40px;
+      border: 1px solid rgba(96,165,250,0.2);
+    }
+    .contact-info-item {
+      display: flex; gap: 16px; align-items: flex-start;
+      padding: 16px 0; border-bottom: 1px solid rgba(96,165,250,0.1);
+    }
+    .contact-info-item:last-child { border-bottom: none; }
+    .contact-icon {
+      width: 44px; height: 44px; border-radius: 10px; flex-shrink: 0;
+      background: rgba(37,99,235,0.25);
+      border: 1px solid rgba(96,165,250,0.25);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
+    }
+    .map-container {
+      border-radius: 16px; overflow: hidden;
+      border: 2px solid #e8f0fe; height: 320px;
+    }
+    .map-container iframe { width: 100%; height: 100%; border: none; }
+    .whatsapp-btn {
+      background: #25d366;
+      display: inline-flex; align-items: center; gap: 10px;
+      color: #fff; font-weight: 600; font-size: 0.9rem;
+      padding: 13px 24px; border-radius: 8px;
+      text-decoration: none; transition: all 0.3s;
+      box-shadow: 0 4px 15px rgba(37,211,102,0.3);
+    }
+    .whatsapp-btn:hover { background: #1ebe5d; transform: translateY(-2px); }
+    .telegram-btn {
+      background: #0088cc;
+      display: inline-flex; align-items: center; gap: 10px;
+      color: #fff; font-weight: 600; font-size: 0.9rem;
+      padding: 13px 24px; border-radius: 8px;
+      text-decoration: none; transition: all 0.3s;
+      box-shadow: 0 4px 15px rgba(0,136,204,0.3);
+    }
+    .telegram-btn:hover { background: #0077b3; transform: translateY(-2px); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: linear-gradient(135deg, #030d1e, #050f28);
+      border-top: 1px solid rgba(96,165,250,0.15);
+    }
+    .footer-link {
+      color: rgba(255,255,255,0.5); font-size: 0.875rem;
+      text-decoration: none; transition: color 0.2s;
+      display: block; margin-bottom: 8px;
+    }
+    .footer-link:hover { color: var(--accent); }
+    .social-icon {
+      width: 38px; height: 38px; border-radius: 9px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.1);
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,0.6); font-size: 16px;
+      text-decoration: none; transition: all 0.25s;
+    }
+    .social-icon:hover { background: rgba(37,99,235,0.3); border-color: #60a5fa; color: #fff; }
+
+    /* ─── MOBILE MENU ─── */
+    #mobile-menu {
+      position: fixed; inset: 0; z-index: 200; /* above #navbar (z-index:100) */
+      background: rgba(3,13,30,0.98);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 32px;
+
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.25s ease, visibility 0.25s ease;
+    }
+    #mobile-menu.open {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+    #mobile-menu a {
+      color: rgba(255,255,255,0.9); font-family: 'Syne', sans-serif;
+      font-size: 1.5rem; font-weight: 700; text-decoration: none;
+      transition: color 0.2s;
+    }
+    #mobile-menu a:hover { color: var(--accent); }
+
+    /* Toggle icon swap */
+    #menu-toggle .icon-x { display: none; }
+    #menu-toggle.active .icon-ham { display: none; }
+    #menu-toggle.active .icon-x { display: block; }
+
+    /* ─── DIVIDER ─── */
+    .section-divider {
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #2563eb, #0ea5e9, transparent);
+      opacity: 0.3;
+    }
+
+    /* ─── SCROLL TO TOP ─── */
+    #scrollTop {
+      position: fixed; bottom: 24px; right: 24px; z-index: 50;
+      width: 44px; height: 44px; border-radius: 10px;
+      background: linear-gradient(135deg, #2563eb, #0ea5e9);
+      color: #fff; font-size: 18px; border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 20px rgba(37,99,235,0.4);
+      opacity: 0; pointer-events: none; transition: all 0.3s;
+    }
+    #scrollTop.visible { opacity: 1; pointer-events: auto; }
+    #scrollTop:hover { transform: translateY(-3px); }
+
+    /* ─── CONTACT FORM ─── */
+    .form-input {
+      width: 100%; background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(96,165,250,0.2); border-radius: 8px;
+      color: #fff; font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem; padding: 13px 16px;
+      outline: none; transition: border-color 0.3s;
+    }
+    .form-input::placeholder { color: rgba(255,255,255,0.35); }
+    .form-input:focus { border-color: rgba(96,165,250,0.6); }
+
+    @media (max-width: 768px) {
+      .hero-title { font-size: 2.2rem !important; }
+      .stat-item { border-right: none; border-bottom: 1px solid rgba(96,165,250,0.15); }
+      .stat-item:last-child { border-bottom: none; }
+      .contact-card { padding: 24px; }
+      .tooth-icon { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════
+     NAVBAR
+════════════════════════════════════ -->
+<nav id="navbar" aria-label="Main navigation">
+  <div class="max-w-7xl mx-auto px-5 flex items-center justify-between">
+    <!-- Logo -->
+    <a href="#hero" class="flex items-center gap-3">
+      <div style="width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#1a4a9c,#0ea5e9);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;color:#fff;font-size:0.85rem;border:2px solid rgba(96,165,250,0.4);flex-shrink:0;">M</div>
+      <div>
+        <div style="font-family:'Syne',sans-serif;font-weight:800;color:#fff;font-size:1rem;line-height:1.1;" id="logo-title">Marva Dental</div>
+        <div style="font-size:0.65rem;color:rgba(255,255,255,0.5);letter-spacing:0.08em;text-transform:uppercase;" id="logo-sub">Education Center</div>
+      </div>
+    </a>
+
+    <!-- Desktop Nav -->
+    <div class="hidden md:flex items-center gap-8">
+      <a href="#about" class="nav-link" data-uz="Biz haqimizda" data-ru="О нас" data-en="About">Biz haqimizda</a>
+      <a href="#courses" class="nav-link" data-uz="Kurslar" data-ru="Курсы" data-en="Courses">Kurslar</a>
+      <a href="#advantages" class="nav-link" data-uz="Afzalliklar" data-ru="Преимущества" data-en="Advantages">Afzalliklar</a>
+      <a href="#testimonials" class="nav-link" data-uz="Sharhllar" data-ru="Отзывы" data-en="Reviews">Sharhlar</a>
+      <a href="#contact" class="nav-link" data-uz="Aloqa" data-ru="Контакты" data-en="Contact">Aloqa</a>
+    </div>
+
+    <!-- Right side -->
+    <div class="flex items-center gap-3">
+      <!-- Language Switcher -->
+      <div class="hidden md:flex items-center gap-1 bg-white/5 rounded-lg px-2 py-1 border border-white/10">
+        <button class="lang-btn active" data-lang="uz">UZ</button>
+        <span style="color:rgba(255,255,255,0.2);font-size:10px;">|</span>
+        <button class="lang-btn" data-lang="ru">RU</button>
+        <span style="color:rgba(255,255,255,0.2);font-size:10px;">|</span>
+        <button class="lang-btn" data-lang="en">EN</button>
+      </div>
+      <a href="tel:+998990376300" class="hidden md:inline-flex btn-primary py-2.5 px-5 text-sm">
+        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+        +998 99 037 63 00
+      </a>
+      <!-- Hamburger -->
+      <button id="menu-toggle" class="md:hidden text-white p-2" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
+        <svg class="icon-ham" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        <svg class="icon-x" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div id="mobile-menu" role="dialog" aria-modal="true">
+  <button id="menu-close" style="position:absolute;top:24px;right:24px;background:none;border:none;color:#fff;font-size:28px;cursor:pointer;">✕</button>
+  <a href="#about" data-uz="Biz haqimizda" data-ru="О нас" data-en="About">Biz haqimizda</a>
+  <a href="#courses" data-uz="Kurslar" data-ru="Курсы" data-en="Courses">Kurslar</a>
+  <a href="#advantages" data-uz="Afzalliklar" data-ru="Преимущества" data-en="Advantages">Afzalliklar</a>
+  <a href="#testimonials" data-uz="Sharhlar" data-ru="Отзывы" data-en="Reviews">Sharhlar</a>
+  <a href="#contact" data-uz="Aloqa" data-ru="Контакты" data-en="Contact">Aloqa</a>
+  <div class="flex gap-3 mt-4">
+    <button class="lang-btn text-white text-base" data-lang="uz" style="padding:8px 16px;border:1px solid rgba(255,255,255,0.2);border-radius:6px;">UZ</button>
+    <button class="lang-btn text-white text-base" data-lang="ru" style="padding:8px 16px;border:1px solid rgba(255,255,255,0.2);border-radius:6px;">RU</button>
+    <button class="lang-btn text-white text-base" data-lang="en" style="padding:8px 16px;border:1px solid rgba(255,255,255,0.2);border-radius:6px;">EN</button>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════
+     HERO
+════════════════════════════════════ -->
+<section id="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow hero-glow-1"></div>
+  <div class="hero-glow hero-glow-2"></div>
+  <div class="hero-circle" style="width:500px;height:500px;top:-100px;right:-150px;"></div>
+  <div class="hero-circle" style="width:300px;height:300px;bottom:-80px;left:-80px;animation-duration:30s;animation-direction:reverse;"></div>
+  <div class="tooth-icon">🦷</div>
+
+  <div class="max-w-7xl mx-auto px-5 py-24 pt-36 w-full">
+    <div class="max-w-3xl">
+      <div class="fade-up">
+        <div class="section-tag mb-6" style="background:rgba(96,165,250,0.15);color:#93c5fd;border:1px solid rgba(96,165,250,0.25);">
+          <svg width="14" height="14" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z" clip-rule="evenodd"/></svg>
+          <span data-uz="Toshkentdagi №1 dental ta'lim markazi" data-ru="№1 стоматологический учебный центр в Ташкенте" data-en="№1 Dental Education Center in Tashkent">Toshkentdagi №1 dental ta'lim markazi</span>
+        </div>
+      </div>
+
+      <h1 class="hero-title fade-up delay-1" style="font-family:'Syne',sans-serif;font-size:3.2rem;font-weight:800;color:#fff;line-height:1.1;margin-bottom:24px;">
+        <span data-uz="Professional" data-ru="Профессиональное" data-en="Professional">Professional</span><br/>
+        <span style="background:linear-gradient(135deg,#60a5fa,#38bdf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;" data-uz="Dental Ta'lim" data-ru="Стоматологическое образование" data-en="Dental Education">Dental Ta'lim</span><br/>
+        <span data-uz="Toshkentda" data-ru="в Ташкенте" data-en="in Tashkent">Toshkentda</span>
+      </h1>
+
+      <p class="fade-up delay-2" style="color:rgba(255,255,255,0.65);font-size:1.05rem;line-height:1.7;max-width:560px;margin-bottom:36px;">
+        <span data-uz="Marva Dental Education — zamonaviy jihozlar, tajribali o'qituvchilar va amaliy mashg'ulotlar orqali stomatologik texniklik sohasida karyerangizni boshlang yoki rivojlantiring." data-ru="Marva Dental Education — начните или развивайте карьеру в стоматологической технике с современным оборудованием и опытными преподавателями." data-en="Marva Dental Education — start or advance your career in dental technology with modern equipment, experienced instructors, and hands-on practical training.">Marva Dental Education — zamonaviy jihozlar, tajribali o'qituvchilar va amaliy mashg'ulotlar orqali stomatologik texniklik sohasida karyerangizni boshlang yoki rivojlantiring.</span>
+      </p>
+
+      <div class="fade-up delay-3 flex flex-wrap gap-4">
+        <a href="#courses" class="btn-primary">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+          <span data-uz="Kursga yozilish" data-ru="Записаться на курс" data-en="Enroll Now">Kursga yozilish</span>
+        </a>
+        <a href="#contact" class="btn-outline">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+          <span data-uz="Bog'lanish" data-ru="Связаться" data-en="Contact Us">Bog'lanish</span>
+        </a>
+      </div>
+
+      <!-- Trust indicators -->
+      <div class="fade-up delay-4 flex flex-wrap gap-6 mt-12" style="padding-top:24px;border-top:1px solid rgba(255,255,255,0.1);">
+        <div class="flex items-center gap-2">
+          <div style="width:32px;height:32px;border-radius:8px;background:rgba(37,99,235,0.3);display:flex;align-items:center;justify-content:center;font-size:16px;">🎓</div>
+          <div>
+            <div style="color:#fff;font-weight:600;font-size:0.875rem;" data-uz="500+ Bitiruvchi" data-ru="500+ Выпускников" data-en="500+ Graduates">500+ Bitiruvchi</div>
+            <div style="color:rgba(255,255,255,0.4);font-size:0.75rem;" data-uz="muvaffaqiyatli" data-ru="успешных" data-en="successful">muvaffaqiyatli</div>
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <div style="width:32px;height:32px;border-radius:8px;background:rgba(14,165,233,0.3);display:flex;align-items:center;justify-content:center;font-size:16px;">⭐</div>
+          <div>
+            <div style="color:#fff;font-weight:600;font-size:0.875rem;">4.9/5.0</div>
+            <div style="color:rgba(255,255,255,0.4);font-size:0.75rem;" data-uz="o'quvchilar bahosi" data-ru="рейтинг" data-en="student rating">o'quvchilar bahosi</div>
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <div style="width:32px;height:32px;border-radius:8px;background:rgba(56,189,248,0.3);display:flex;align-items:center;justify-content:center;font-size:16px;">🏆</div>
+          <div>
+            <div style="color:#fff;font-weight:600;font-size:0.875rem;" data-uz="5+ Yil tajriba" data-ru="5+ Лет опыта" data-en="5+ Years Experience">5+ Yil tajriba</div>
+            <div style="color:rgba(255,255,255,0.4);font-size:0.75rem;" data-uz="ta'lim sohasida" data-ru="в образовании" data-en="in education">ta'lim sohasida</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div style="position:absolute;bottom:30px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:6px;color:rgba(255,255,255,0.3);font-size:0.7rem;letter-spacing:0.1em;animation:bounce 2s infinite;">
+    <span>SCROLL</span>
+    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg>
+  </div>
+  <style>@keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(6px)}}</style>
+</section>
+
+
+<!-- ═══════════════════════════════════
+     STATS BAR
+════════════════════════════════════ -->
+<div class="stats-bar">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="grid grid-cols-2 md:grid-cols-4">
+      <div class="stat-item py-6 px-4 text-center">
+        <div style="font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;color:#60a5fa;">500+</div>
+        <div style="color:rgba(255,255,255,0.5);font-size:0.8rem;margin-top:2px;" data-uz="Bitiruvchilar" data-ru="Выпускников" data-en="Graduates">Bitiruvchilar</div>
+      </div>
+      <div class="stat-item py-6 px-4 text-center">
+        <div style="font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;color:#60a5fa;">3</div>
+        <div style="color:rgba(255,255,255,0.5);font-size:0.8rem;margin-top:2px;" data-uz="Maxsus kurslar" data-ru="Специальных курса" data-en="Specialized Courses">Maxsus kurslar</div>
+      </div>
+      <div class="stat-item py-6 px-4 text-center">
+        <div style="font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;color:#60a5fa;">98%</div>
+        <div style="color:rgba(255,255,255,0.5);font-size:0.8rem;margin-top:2px;" data-uz="Muvaffaqiyat darajasi" data-ru="Успеваемость" data-en="Success Rate">Muvaffaqiyat darajasi</div>
+      </div>
+      <div class="stat-item py-6 px-4 text-center">
+        <div style="font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;color:#60a5fa;">5+</div>
+        <div style="color:rgba(255,255,255,0.5);font-size:0.8rem;margin-top:2px;" data-uz="Yil tajriba" data-ru="Лет опыта" data-en="Years Experience">Yil tajriba</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════
+     ABOUT
+════════════════════════════════════ -->
+<section id="about" class="py-20">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="grid md:grid-cols-2 gap-16 items-center">
+
+      <!-- Left: Text -->
+      <div>
+        <div class="section-tag mb-5 fade-left">
+          <span data-uz="Biz haqimizda" data-ru="О нас" data-en="About Us">Biz haqimizda</span>
+        </div>
+        <h2 class="section-title fade-left delay-1" style="font-size:2.4rem;margin-bottom:20px;">
+          <span data-uz="O'zbekistondagi eng yaxshi" data-ru="Лучший в Узбекистане" data-en="Uzbekistan's Premier">O'zbekistondagi eng yaxshi</span><br/>
+          <span class="gradient-text" data-uz="Dental Ta'lim Markazi" data-ru="Учебный Стоматологический Центр" data-en="Dental Training Center">Dental Ta'lim Markazi</span>
+        </h2>
+        <p class="fade-left delay-2" style="color:#64748b;line-height:1.8;margin-bottom:24px;font-size:0.975rem;">
+          <span data-uz="Marva Dental Education — stomatologik texniklik sohasida yuqori sifatli ta'lim beruvchi ixtisoslashgan markaz. Biz o'quvchilarimizga zamonaviy laboratoriya jihozlari bilan ishlashni, metall-keramika va modelirovka texnikalarini o'rgatamiz." data-ru="Marva Dental Education — специализированный центр высококачественного обучения в области стоматологической техники. Мы обучаем наших студентов работе с современным лабораторным оборудованием, металлокерамикой и техниками моделирования." data-en="Marva Dental Education is a specialized center offering high-quality training in dental technology. We teach our students to work with modern laboratory equipment, metal-ceramic techniques, and modeling methods.">Marva Dental Education — stomatologik texniklik sohasida yuqori sifatli ta'lim beruvchi ixtisoslashgan markaz.</span>
+        </p>
+        <p class="fade-left delay-3" style="color:#64748b;line-height:1.8;margin-bottom:32px;font-size:0.975rem;">
+          <span data-uz="Har bir o'quvchi individual yondashuv, kichik guruhlar va ko'proq amaliy mashg'ulotlar orqali kursni tugatgandan so'ng kasbiy darajada ishlashga tayyor bo'ladi." data-ru="Каждый студент благодаря индивидуальному подходу, небольшим группам и практическим занятиям будет готов к профессиональной работе после завершения курса." data-en="Every student, through an individual approach, small groups, and extensive practical sessions, will be ready for professional work upon completing the course.">Har bir o'quvchi individual yondashuv, kichik guruhlar va ko'proq amaliy mashg'ulotlar orqali kursni tugatgandan so'ng kasbiy darajada ishlashga tayyor bo'ladi.</span>
+        </p>
+        <a href="#contact" class="btn-primary fade-left delay-4">
+          <span data-uz="Batafsil ma'lumot" data-ru="Подробнее" data-en="Learn More">Batafsil ma'lumot</span>
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </a>
+      </div>
+
+      <!-- Right: Features -->
+      <div class="space-y-4">
+        <div class="about-feature fade-right delay-1">
+          <div class="about-icon">🏆</div>
+          <div>
+            <h3 style="font-family:'Syne',sans-serif;font-weight:700;color:#0a1628;margin-bottom:4px;font-size:1rem;" data-uz="Tajribali O'qituvchilar" data-ru="Опытные Преподаватели" data-en="Experienced Instructors">Tajribali O'qituvchilar</h3>
+            <p style="color:#64748b;font-size:0.875rem;line-height:1.6;" data-uz="10+ yillik tajribaga ega sertifikatlangan mutaxassislar tomonidan o'qitiladi." data-ru="Обучение ведётся сертифицированными специалистами с опытом более 10 лет." data-en="Taught by certified specialists with 10+ years of professional experience.">10+ yillik tajribaga ega sertifikatlangan mutaxassislar tomonidan o'qitiladi.</p>
+          </div>
+        </div>
+        <div class="about-feature fade-right delay-2">
+          <div class="about-icon">⚡</div>
+          <div>
+            <h3 style="font-family:'Syne',sans-serif;font-weight:700;color:#0a1628;margin-bottom:4px;font-size:1rem;" data-uz="Tez Ko'nikma Rivojlantirish" data-ru="Быстрое Развитие Навыков" data-en="Fast Skill Development">Tez Ko'nikma Rivojlantirish</h3>
+            <p style="color:#64748b;font-size:0.875rem;line-height:1.6;" data-uz="Intensiv o'quv dasturlari orqali qisqa vaqt ichida kasbiy ko'nikmalarni egallang." data-ru="Освойте профессиональные навыки в короткие сроки через интенсивные учебные программы." data-en="Master professional skills in a short time through intensive training programs.">Intensiv o'quv dasturlari orqali qisqa vaqt ichida kasbiy ko'nikmalarni egallang.</p>
+          </div>
+        </div>
+        <div class="about-feature fade-right delay-3">
+          <div class="about-icon">🔬</div>
+          <div>
+            <h3 style="font-family:'Syne',sans-serif;font-weight:700;color:#0a1628;margin-bottom:4px;font-size:1rem;" data-uz="Amaliy Mashg'ulotlar" data-ru="Практические Занятия" data-en="Practical Training">Amaliy Mashg'ulotlar</h3>
+            <p style="color:#64748b;font-size:0.875rem;line-height:1.6;" data-uz="Barcha darslar haqiqiy laboratoriya sharoitida zamonaviy uskunalar bilan o'tkaziladi." data-ru="Все занятия проводятся в реальных лабораторных условиях с современным оборудованием." data-en="All lessons are conducted in real laboratory conditions with modern equipment.">Barcha darslar haqiqiy laboratoriya sharoitida zamonaviy uskunalar bilan o'tkaziladi.</p>
+          </div>
+        </div>
+        <div class="about-feature fade-right delay-4">
+          <div class="about-icon">📜</div>
+          <div>
+            <h3 style="font-family:'Syne',sans-serif;font-weight:700;color:#0a1628;margin-bottom:4px;font-size:1rem;" data-uz="Sertifikat Berish" data-ru="Выдача Сертификатов" data-en="Certificate Issuance">Sertifikat Berish</h3>
+            <p style="color:#64748b;font-size:0.875rem;line-height:1.6;" data-uz="Kursni muvaffaqiyatli tugatgan har bir o'quvchiga rasmiy sertifikat beriladi." data-ru="Каждому успешно завершившему курс студенту выдаётся официальный сертификат." data-en="Every student who successfully completes the course receives an official certificate.">Kursni muvaffaqiyatli tugatgan har bir o'quvchiga rasmiy sertifikat beriladi.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+
+<!-- ═══════════════════════════════════
+     COURSES
+════════════════════════════════════ -->
+<section id="courses" class="py-20">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="text-center mb-14">
+      <div class="section-tag mb-5 fade-up inline-flex" style="margin:0 auto 20px;">
+        <span data-uz="Kurslarimiz" data-ru="Наши Курсы" data-en="Our Courses">Kurslarimiz</span>
+      </div>
+      <h2 class="section-title fade-up delay-1" style="font-size:2.4rem;margin-bottom:16px;">
+        <span data-uz="Karyerangizni Bugun Boshlang" data-ru="Начните Карьеру Сегодня" data-en="Start Your Career Today">Karyerangizni Bugun Boshlang</span>
+      </h2>
+      <p class="fade-up delay-2" style="color:#64748b;max-width:560px;margin:0 auto;line-height:1.7;font-size:0.975rem;">
+        <span data-uz="Har bir kurs amaliy ko'nikma va real ish tajribasini berish uchun maxsus ishlab chiqilgan." data-ru="Каждый курс специально разработан для предоставления практических навыков и реального рабочего опыта." data-en="Each course is specially designed to provide practical skills and real-world work experience.">Har bir kurs amaliy ko'nikma va real ish tajribasini berish uchun maxsus ishlab chiqilgan.</span>
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+
+      <!-- Course 1 -->
+      <div class="course-card fade-up delay-1">
+        <div class="course-card-header">
+          <span class="course-badge" style="background:rgba(96,165,250,0.2);color:#93c5fd;">
+            <span data-uz="Asosiy Kurs" data-ru="Основной Курс" data-en="Foundation Course">Asosiy Kurs</span>
+          </span>
+          <h3 style="font-family:'Syne',sans-serif;font-weight:800;color:#fff;font-size:1.25rem;margin-bottom:10px;">
+            <span data-uz="Tish Texniklik Kursi" data-ru="Курс Зубного Техника" data-en="Dental Technician Course">Tish Texniklik Kursi</span>
+          </h3>
+          <div class="flex items-end gap-2">
+            <div class="course-price">7 735 000</div>
+            <div class="course-price-label" style="margin-bottom:3px;">UZS</div>
+          </div>
+        </div>
+        <div class="course-body">
+          <p style="color:#64748b;font-size:0.875rem;line-height:1.7;margin-bottom:20px;" data-uz="Tish texniklik asoslarini o'rganish kursi. Nazariy va amaliy bilimlar majmuasi. Zamonaviy laboratoriya sharoitida o'qitiladi." data-ru="Курс по основам зубной техники. Комплекс теоретических и практических знаний. Обучение в современных лабораторных условиях." data-en="Foundation course in dental technology basics. Comprehensive theoretical and practical knowledge. Taught in modern laboratory conditions.">Tish texniklik asoslarini o'rganish kursi. Nazariy va amaliy bilimlar majmuasi. Zamonaviy laboratoriya sharoitida o'qitiladi.</p>
+          <div class="mb-6">
+            <div class="course-feature">
+              <span class="check-icon">✓</span>
+              <span data-uz="To'liq nazariy asoslar" data-ru="Полная теоретическая база" data-en="Complete theoretical foundation">To'liq nazariy asoslar</span>
+            </div>
+            <div class="course-feature">
+              <span class="check-icon">✓</span>
+              <span data-uz="Laboratoriya mashg'ulotlari" data-ru="Лабораторные занятия" data-en="Laboratory practice sessions">Laboratoriya mashg'ulotlari</span>
+            </div>
+            <div class="course-feature">
+              <span class="check-icon">✓</span>
+              <span data-uz="Sertifikat beriladi" data-ru="Выдаётся сертификат" data-en="Certificate provided">Sertifikat beriladi</span>
+            </div>
+            <div class="course-feature">
+              <span class="check-icon">✓</span>
+              <span data-uz="Kichik guruhlar (5-8 kishi)" data-ru="Малые группы (5-8 чел.)" data-en="Small groups (5-8 people)">Kichik guruhlar (5-8 kishi)</span>
+            </div>
+          </div>
+          <a href="tel:+998990376300" class="btn-accent w-full justify-center">
+            <span data-uz="Yozilish" data-ru="Записаться" data-en="Enroll">Yozilish</span>
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Course 2 -->
+      <div class="course-card fade-up delay-2" style="border-color:#93c5fd;position:relative;">
+        <div style="position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#2563eb,#0ea5e9);color:#fff;font-family:'Syne',sans-serif;font-size:0.7rem;font-weight:700;letter-spacing:0.08em;padding:5px 16px;border-radius:50px;white-space:nowrap;" data-uz="MASHHUR KURS" data-ru="ПОПУЛЯРНЫЙ" data-en="MOST POPULAR">MASHHUR KURS</div>
+        <div class="course-card-header" style="background:linear-gradient(135deg,#1e3a8a,#1a4a9c,#0ea5e9);">
+          <span class="course-badge" style="background:rgba(56,189,248,0.2);color:#7dd3fc;">
+            <span data-uz="Ixtisoslashgan" data-ru="Специализированный" data-en="Specialized">Ixtisoslashgan</span>
+          </span>
+          <h3 style="font-family:'Syne',sans-serif;font-weight:800;color:#fff;font-size:1.25rem;margin-bottom:10px;">
+            <span data-uz="Modelirovka Kursi" data-ru="Курс Моделирования" data-en="Modeling Course">Modelirovka Kursi</span>
+          </h3>
+          <div class="flex items-end gap-2">
+            <div class="course-price" style="color:#7dd3fc;" data-uz="Narx so'raladi" data-ru="Цена по запросу" data-en="Price on request">Narx so'raladi</div>
+          </div>
+        </div>
+        <div class="course-body">
+          <p style="color:#64748b;font-size:0.875rem;line-height:1.7;margin-bottom:20px;" data-uz="Tish modelirovkasi texnikasini o'rganish. Mum va kompozit materiallar bilan ishlash. Estetik tish konstrukciyalarini yaratish." data-ru="Изучение техники моделирования зубов. Работа с воском и композитными материалами. Создание эстетических зубных конструкций." data-en="Learning dental modeling techniques. Working with wax and composite materials. Creating aesthetic dental constructions.">Tish modelirovkasi texnikasini o'rganish. Mum va kompozit materiallar bilan ishlash.</p>
+          <div class="mb-6">
+            <div class="course-feature">
+              <span class="check-icon">✓</span>
+              <span data-uz="Mum modelirovka texnikasi" data-ru="Техника восковой моделировки" data-en="Wax modeling techniques">Mum modelirovka texnikasi</span>
+            </div>
+            <div class="course-feature">
+              <span class="check-icon">✓</span>
+              <span data-uz="3D anatomik modellar" data-ru="3D анатомические модели" data-en="3D anatomical models">3D anatomik modellar</span>
+            </div>
+            <div class="course-feature">
+              <span class="check-icon">✓</span>
+              <span data-uz="Estetik tish dizayni" data-ru="Эстетический дизайн зубов" data-en="Aesthetic tooth design">Estetik tish dizayni</span>
+            </div>
+            <div class="course-feature">
+              <span class="check-icon">✓</span>
+              <span data-uz="Mentorlik qo'llab-quvvatlash" data-ru="Менторская поддержка" data-en="Mentorship support">Mentorlik qo'llab-quvvatlash</span>
+            </div>
+          </div>
+          <a href="tel:+998990376300" class="btn-primary w-full justify-center">
+            <span data-uz="Yozilish" data-ru="Записаться" data-en="Enroll">Yozilish</span>
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Course 3 -->
+      <div class="course-card fade-up delay-3">
+        <div class="course-card-header">
+          <span class="course-badge" style="background:rgba(96,165,250,0.2);color:#93c5fd;">
+            <span data-uz="Ilg'or Daraja" data-ru="Продвинутый" data-en="Advanced Level">Ilg'or Daraja</span>
+          </span>
+          <h3 style="font-family:'Syne',sans-serif;font-weight:800;color:#fff;font-size:1.25rem;margin-bottom:10px;">
+            <span data-uz="Metall-Keramika Asoslari" data-ru="Основы Металлокерамики" data-en="Metal-Ceramic Basics">Metall-Keramika Asoslari</span>
+          </h3>
+          <div class="flex items-end gap-2">
+            <div class="course-price" data-uz="Narx so'raladi" data-ru="Цена по запросу" data-en="Price on request">Narx so'raladi</div>
+          </div>
+        </div>
+        <div class="course-body">
+          <p style="color:#64748b;font-size:0.875rem;line-height:1.7;margin-bottom:20px;" data-uz="Metall-keramika toj va protezlarini yaratishni o'rganish kursi. Professional darajadagi asbob-uskunalar bilan ishlash." data-ru="Курс по созданию металлокерамических коронок и протезов. Работа с профессиональным оборудованием." data-en="Course on creating metal-ceramic crowns and prostheses. Working with professional-grade equipment.">Metall-keramika toj va protezlarini yaratishni o'rganish kursi. Professional darajadagi asbob-uskunalar bilan ishlash.</p>
+          <div class="mb-6">
+            <div class="course-feature">
+              <span class="check-icon">✓</span>
+              <span data-uz="Metall ramkalar tayyorlash" data-ru="Изготовление металлических каркасов" data-en="Metal framework fabrication">Metall ramkalar tayyorlash</span>
+            </div>
+            <div class="course-feature">
+              <span class="check-icon">✓</span>
+              <span data-uz="Keramika qoplash texnikasi" data-ru="Техника нанесения керамики" data-en="Ceramic layering techniques">Keramika qoplash texnikasi</span>
+            </div>
+            <div class="course-feature">
+              <span class="check-icon">✓</span>
+              <span data-uz="Rang tanlash va estetika" data-ru="Подбор цвета и эстетика" data-en="Color matching and aesthetics">Rang tanlash va estetika</span>
+            </div>
+            <div class="course-feature">
+              <span class="check-icon">✓</span>
+              <span data-uz="Sanoat uskunalari bilan ishlash" data-ru="Работа с промышленным оборудованием" data-en="Industrial equipment usage">Sanoat uskunalari bilan ishlash</span>
+            </div>
+          </div>
+          <a href="tel:+998990376300" class="btn-accent w-full justify-center">
+            <span data-uz="Yozilish" data-ru="Записаться" data-en="Enroll">Yozilish</span>
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════
+     ADVANTAGES
+════════════════════════════════════ -->
+<section id="advantages" class="py-20">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="text-center mb-14">
+      <div class="section-tag mb-5 fade-up inline-flex" style="margin:0 auto 20px;background:rgba(96,165,250,0.15);color:#93c5fd;border:1px solid rgba(96,165,250,0.25);">
+        <span data-uz="Nima uchun biz?" data-ru="Почему мы?" data-en="Why Choose Us?">Nima uchun biz?</span>
+      </div>
+      <h2 class="section-title fade-up delay-1" style="font-size:2.4rem;color:#fff;margin-bottom:16px;">
+        <span data-uz="Bizning Afzalliklarimiz" data-ru="Наши Преимущества" data-en="Our Advantages">Bizning Afzalliklarimiz</span>
+      </h2>
+      <p class="fade-up delay-2" style="color:rgba(255,255,255,0.5);max-width:540px;margin:0 auto;line-height:1.7;font-size:0.975rem;">
+        <span data-uz="Marva bilan o'qish — bu nafaqat bilim, balki muvaffaqiyatli karyeraga yo'l." data-ru="Учиться в Marva — это не просто знания, но и путь к успешной карьере." data-en="Studying at Marva is not just knowledge, but a path to a successful career.">Marva bilan o'qish — bu nafaqat bilim, balki muvaffaqiyatli karyeraga yo'l.</span>
+      </p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="adv-card fade-up delay-1">
+        <div class="adv-icon-wrap">🎯</div>
+        <h3 style="font-family:'Syne',sans-serif;font-weight:700;color:#fff;margin-bottom:12px;font-size:1.05rem;" data-uz="Tajribali Ustozlar" data-ru="Опытные Наставники" data-en="Experienced Instructors">Tajribali Ustozlar</h3>
+        <p style="color:rgba(255,255,255,0.5);font-size:0.875rem;line-height:1.6;" data-uz="10+ yil klinik va laboratoriya tajribasiga ega mutaxassislar." data-ru="Специалисты с 10+ годами клинического и лабораторного опыта." data-en="Specialists with 10+ years of clinical and laboratory experience.">10+ yil klinik va laboratoriya tajribasiga ega mutaxassislar.</p>
+      </div>
+      <div class="adv-card fade-up delay-2">
+        <div class="adv-icon-wrap">💡</div>
+        <h3 style="font-family:'Syne',sans-serif;font-weight:700;color:#fff;margin-bottom:12px;font-size:1.05rem;" data-uz="Amaliy O'qitish" data-ru="Практическое Обучение" data-en="Practical Learning">Amaliy O'qitish</h3>
+        <p style="color:rgba(255,255,255,0.5);font-size:0.875rem;line-height:1.6;" data-uz="O'quv vaqtining 70% amaliy mashg'ulotlarga ajratilgan." data-ru="70% учебного времени отведено практическим занятиям." data-en="70% of study time is dedicated to practical sessions.">O'quv vaqtining 70% amaliy mashg'ulotlarga ajratilgan.</p>
+      </div>
+      <div class="adv-card fade-up delay-3">
+        <div class="adv-icon-wrap">🔧</div>
+        <h3 style="font-family:'Syne',sans-serif;font-weight:700;color:#fff;margin-bottom:12px;font-size:1.05rem;" data-uz="Zamonaviy Jihozlar" data-ru="Современное Оборудование" data-en="Modern Equipment">Zamonaviy Jihozlar</h3>
+        <p style="color:rgba(255,255,255,0.5);font-size:0.875rem;line-height:1.6;" data-uz="Yevropa va Osiyo ishlab chiqaruvchilarining eng so'nggi jihozlari." data-ru="Новейшее оборудование европейских и азиатских производителей." data-en="Latest equipment from European and Asian manufacturers.">Yevropa va Osiyo ishlab chiqaruvchilarining eng so'nggi jihozlari.</p>
+      </div>
+      <div class="adv-card fade-up delay-4">
+        <div class="adv-icon-wrap">🚀</div>
+        <h3 style="font-family:'Syne',sans-serif;font-weight:700;color:#fff;margin-bottom:12px;font-size:1.05rem;" data-uz="Tez Natija" data-ru="Быстрый Результат" data-en="Fast Results">Tez Natija</h3>
+        <p style="color:rgba(255,255,255,0.5);font-size:0.875rem;line-height:1.6;" data-uz="Birinchi darsdan boshlab real asboblar bilan ishlaysiz." data-ru="Вы работаете с реальными инструментами с первого занятия." data-en="You work with real tools from the very first lesson.">Birinchi darsdan boshlab real asboblar bilan ishlaysiz.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider" style="opacity:0.1;"></div>
+
+
+<!-- ═══════════════════════════════════
+     TESTIMONIALS
+════════════════════════════════════ -->
+<section id="testimonials" class="py-20">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="text-center mb-14">
+      <div class="section-tag mb-5 fade-up inline-flex" style="margin:0 auto 20px;">
+        <span data-uz="Sharhlar" data-ru="Отзывы" data-en="Testimonials">Sharhlar</span>
+      </div>
+      <h2 class="section-title fade-up delay-1" style="font-size:2.4rem;margin-bottom:16px;">
+        <span data-uz="O'quvchilarimiz Nima Deydi" data-ru="Что Говорят Студенты" data-en="What Our Students Say">O'quvchilarimiz Nima Deydi</span>
+      </h2>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="testimonial-card fade-up delay-1">
+        <div class="stars mb-3">★★★★★</div>
+        <p style="color:#475569;font-size:0.9rem;line-height:1.8;margin-bottom:24px;position:relative;z-index:1;" data-uz='"O\'zbekistondagi eng yaxshi dental ta\'lim markazi! Ustozlar juda professional, jihozlar zamonaviy. Kursdan keyin darhol ishga joylasha oldim."' data-ru='"Лучший стоматологический учебный центр в Узбекистане! Преподаватели очень профессиональны, оборудование современное. После курса сразу нашёл работу."' data-en='"Best dental education center in Uzbekistan! The instructors are very professional and the equipment is modern. I found a job right after the course."'>"O'zbekistondagi eng yaxshi dental ta'lim markazi! Ustozlar juda professional, jihozlar zamonaviy. Kursdan keyin darhol ishga joylasha oldim."</p>
+        <div class="flex items-center gap-3">
+          <div class="avatar-circle">A</div>
+          <div>
+            <div style="font-family:'Syne',sans-serif;font-weight:700;color:#0a1628;font-size:0.9rem;">Alisher T.</div>
+            <div style="color:#94a3b8;font-size:0.78rem;" data-uz="Tish texnigi" data-ru="Зубной техник" data-en="Dental Technician">Tish texnigi</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card fade-up delay-2">
+        <div class="stars mb-3">★★★★★</div>
+        <p style="color:#475569;font-size:0.9rem;line-height:1.8;margin-bottom:24px;position:relative;z-index:1;" data-uz='"Juda professional o\'qituvchilar! Har bir darsda yangi narsalarni o\'rganaman. Amaliy mashg\'ulotlar sifati boshqa markazlardan ancha yuqori."' data-ru='"Очень профессиональные преподаватели! На каждом занятии узнаю что-то новое. Качество практических занятий намного выше, чем в других центрах."' data-en='"Very professional teachers! I learn something new in every class. The quality of practical sessions is much higher than other centers."'>"Juda professional o'qituvchilar! Har bir darsda yangi narsalarni o'rganaman. Amaliy mashg'ulotlar sifati boshqa markazlardan ancha yuqori."</p>
+        <div class="flex items-center gap-3">
+          <div class="avatar-circle" style="background:linear-gradient(135deg,#0ea5e9,#0284c7);">M</div>
+          <div>
+            <div style="font-family:'Syne',sans-serif;font-weight:700;color:#0a1628;font-size:0.9rem;">Malika X.</div>
+            <div style="color:#94a3b8;font-size:0.78rem;" data-uz="Modelirovka kursi bitiruvchisi" data-ru="Выпускница курса моделирования" data-en="Modeling Course Graduate">Modelirovka kursi bitiruvchisi</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card fade-up delay-3">
+        <div class="stars mb-3">★★★★★</div>
+        <p style="color:#475569;font-size:0.9rem;line-height:1.8;margin-bottom:24px;position:relative;z-index:1;" data-uz='"Arzon narxda yuqori sifatli ta\'lim olish mumkin bo\'lgan yagona joy. Marva Dental Education-ni barchaga tavsiya qilaman!"' data-ru='"Единственное место, где можно получить качественное образование по доступной цене. Рекомендую Marva Dental Education всем!"' data-en='"The only place where you can get quality education at an affordable price. I recommend Marva Dental Education to everyone!"'>"Arzon narxda yuqori sifatli ta'lim olish mumkin bo'lgan yagona joy. Marva Dental Education-ni barchaga tavsiya qilaman!"</p>
+        <div class="flex items-center gap-3">
+          <div class="avatar-circle" style="background:linear-gradient(135deg,#0369a1,#0ea5e9);">S</div>
+          <div>
+            <div style="font-family:'Syne',sans-serif;font-weight:700;color:#0a1628;font-size:0.9rem;">Sardor B.</div>
+            <div style="color:#94a3b8;font-size:0.78rem;" data-uz="Metall-keramika kursi bitiruvchisi" data-ru="Выпускник курса металлокерамики" data-en="Metal-Ceramic Course Graduate">Metall-keramika kursi bitiruvchisi</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+
+<!-- ═══════════════════════════════════
+     CONTACT
+════════════════════════════════════ -->
+<section id="contact" class="py-20">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="text-center mb-14">
+      <div class="section-tag mb-5 fade-up inline-flex" style="margin:0 auto 20px;">
+        <span data-uz="Bog'lanish" data-ru="Контакты" data-en="Contact">Bog'lanish</span>
+      </div>
+      <h2 class="section-title fade-up delay-1" style="font-size:2.4rem;margin-bottom:16px;">
+        <span data-uz="Biz Bilan Bog'laning" data-ru="Свяжитесь с Нами" data-en="Get In Touch">Biz Bilan Bog'laning</span>
+      </h2>
+      <p class="fade-up delay-2" style="color:#64748b;max-width:480px;margin:0 auto;line-height:1.7;font-size:0.975rem;">
+        <span data-uz="Savollaringiz bormi? Biz bilan bog'laning yoki kursga yozilish uchun murojaat qiling." data-ru="Есть вопросы? Свяжитесь с нами или обратитесь для записи на курс." data-en="Have questions? Contact us or reach out to enroll in a course.">Savollaringiz bormi? Biz bilan bog'laning yoki kursga yozilish uchun murojaat qiling.</span>
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-10">
+
+      <!-- Contact Info + Form -->
+      <div class="contact-card fade-left">
+        <h3 style="font-family:'Syne',sans-serif;font-weight:700;color:#fff;font-size:1.2rem;margin-bottom:24px;" data-uz="Aloqa Ma'lumotlari" data-ru="Контактная Информация" data-en="Contact Information">Aloqa Ma'lumotlari</h3>
+
+        <div class="contact-info-item">
+          <div class="contact-icon">📍</div>
+          <div>
+            <div style="color:rgba(255,255,255,0.5);font-size:0.75rem;margin-bottom:4px;" data-uz="Manzil" data-ru="Адрес" data-en="Address">Manzil</div>
+            <div style="color:#fff;font-weight:500;font-size:0.9rem;" data-uz="Toshkent, Farobiy ko'chasi, 99A" data-ru="Ташкент, улица Фаробий, 99А" data-en="Tashkent, Farobiy Street, 99A">Toshkent, Farobiy ko'chasi, 99A</div>
+          </div>
+        </div>
+
+        <div class="contact-info-item">
+          <div class="contact-icon">📞</div>
+          <div>
+            <div style="color:rgba(255,255,255,0.5);font-size:0.75rem;margin-bottom:4px;" data-uz="Telefon" data-ru="Телефон" data-en="Phone">Telefon</div>
+            <a href="tel:+998990376300" style="color:#60a5fa;font-weight:600;font-size:1rem;text-decoration:none;">+998 99 037 63 00</a>
+          </div>
+        </div>
+
+        <div class="contact-info-item">
+          <div class="contact-icon">🕐</div>
+          <div>
+            <div style="color:rgba(255,255,255,0.5);font-size:0.75rem;margin-bottom:4px;" data-uz="Ish vaqti" data-ru="Рабочее время" data-en="Working Hours">Ish vaqti</div>
+            <div style="color:#fff;font-weight:500;font-size:0.9rem;" data-uz="Du–Sh: 9:00 – 18:00" data-ru="Пн–Сб: 9:00 – 18:00" data-en="Mon–Sat: 9:00 – 18:00">Du–Sh: 9:00 – 18:00</div>
+          </div>
+        </div>
+
+        <!-- Messenger Buttons -->
+        <div class="flex gap-3 mt-8 flex-wrap">
+          <a href="https://wa.me/998990376300" target="_blank" rel="noopener" class="whatsapp-btn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            WhatsApp
+          </a>
+          <a href="https://t.me/marvadental" target="_blank" rel="noopener" class="telegram-btn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+            Telegram
+          </a>
+        </div>
+
+        <!-- Quick form -->
+        <div style="margin-top:28px;padding-top:24px;border-top:1px solid rgba(96,165,250,0.15);">
+          <p style="color:rgba(255,255,255,0.6);font-size:0.85rem;margin-bottom:16px;" data-uz="Tez murojaat:" data-ru="Быстрый запрос:" data-en="Quick inquiry:">Tez murojaat:</p>
+          <div class="flex gap-3">
+            <input type="tel" class="form-input" placeholder="+998 XX XXX XX XX" style="flex:1;" />
+            <a href="tel:+998990376300" class="btn-accent" style="white-space:nowrap;padding:13px 20px;">
+              <span data-uz="Qo'ng'iroq" data-ru="Позвонить" data-en="Call">Qo'ng'iroq</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Map -->
+      <div class="fade-right">
+        <div class="map-container">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2996.3!2d69.279!3d41.299!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDHCsDE3JzU2LjQiTiA2OcKwMTYnNDQuNCJF!5e0!3m2!1sen!2suz!4v1234567890"
+            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+            title="Marva Dental Education location">
+          </iframe>
+        </div>
+        <div style="margin-top:16px;background:#f8faff;border:1px solid #e8f0fe;border-radius:12px;padding:16px 20px;display:flex;align-items:center;gap:12px;">
+          <div style="font-size:24px;">📍</div>
+          <div>
+            <div style="font-family:'Syne',sans-serif;font-weight:700;color:#0a1628;font-size:0.9rem;" data-uz="Farobiy ko'chasi, 99A" data-ru="ул. Фаробий, 99А" data-en="Farobiy Street, 99A">Farobiy ko'chasi, 99A</div>
+            <div style="color:#64748b;font-size:0.8rem;" data-uz="Toshkent, O'zbekiston" data-ru="Ташкент, Узбекистан" data-en="Tashkent, Uzbekistan">Toshkent, O'zbekiston</div>
+          </div>
+          <a href="https://goo.gl/maps/example" target="_blank" rel="noopener" style="margin-left:auto;color:#2563eb;font-size:0.8rem;font-weight:600;text-decoration:none;white-space:nowrap;" data-uz="Yo'l ko'rsatish" data-ru="Маршрут" data-en="Get Directions">Yo'l ko'rsatish →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════
+     FOOTER
+════════════════════════════════════ -->
+<footer>
+  <div class="max-w-7xl mx-auto px-5 py-14">
+    <div class="grid md:grid-cols-4 gap-10">
+
+      <!-- Brand -->
+      <div class="md:col-span-2">
+        <div class="flex items-center gap-3 mb-5">
+          <div style="width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#1a4a9c,#0ea5e9);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;color:#fff;font-size:0.9rem;border:2px solid rgba(96,165,250,0.3);">M</div>
+          <div>
+            <div style="font-family:'Syne',sans-serif;font-weight:800;color:#fff;font-size:1.05rem;">Marva Dental Education</div>
+            <div style="font-size:0.65rem;color:rgba(255,255,255,0.35);letter-spacing:0.1em;text-transform:uppercase;">Tashkent, Uzbekistan</div>
+          </div>
+        </div>
+        <p style="color:rgba(255,255,255,0.4);font-size:0.875rem;line-height:1.7;max-width:300px;" data-uz="Professional dental ta'lim markazi. Zamonaviy jihozlar, tajribali ustozlar va amaliy mashg'ulotlar." data-ru="Профессиональный центр стоматологического образования. Современное оборудование, опытные преподаватели." data-en="Professional dental education center. Modern equipment, experienced instructors, and practical training.">Professional dental ta'lim markazi. Zamonaviy jihozlar, tajribali ustozlar va amaliy mashg'ulotlar.</p>
+        <div class="flex gap-3 mt-6">
+          <a href="https://t.me/marvadental" target="_blank" rel="noopener" class="social-icon" aria-label="Telegram">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+          </a>
+          <a href="https://wa.me/998990376300" target="_blank" rel="noopener" class="social-icon" aria-label="WhatsApp">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          </a>
+          <a href="tel:+998990376300" class="social-icon" aria-label="Phone">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Links -->
+      <div>
+        <h4 style="font-family:'Syne',sans-serif;color:#fff;font-weight:700;margin-bottom:16px;font-size:0.9rem;" data-uz="Tezkor havolalar" data-ru="Быстрые ссылки" data-en="Quick Links">Tezkor havolalar</h4>
+        <a href="#about" class="footer-link" data-uz="Biz haqimizda" data-ru="О нас" data-en="About">Biz haqimizda</a>
+        <a href="#courses" class="footer-link" data-uz="Kurslar" data-ru="Курсы" data-en="Courses">Kurslar</a>
+        <a href="#advantages" class="footer-link" data-uz="Afzalliklar" data-ru="Преимущества" data-en="Advantages">Afzalliklar</a>
+        <a href="#testimonials" class="footer-link" data-uz="Sharhlar" data-ru="Отзывы" data-en="Reviews">Sharhlar</a>
+        <a href="#contact" class="footer-link" data-uz="Bog'lanish" data-ru="Контакты" data-en="Contact">Bog'lanish</a>
+      </div>
+
+      <!-- Contact -->
+      <div>
+        <h4 style="font-family:'Syne',sans-serif;color:#fff;font-weight:700;margin-bottom:16px;font-size:0.9rem;" data-uz="Aloqa" data-ru="Контакты" data-en="Contact">Aloqa</h4>
+        <p style="color:rgba(255,255,255,0.4);font-size:0.85rem;margin-bottom:10px;line-height:1.5;" data-uz="Farobiy ko'chasi, 99A, Toshkent" data-ru="ул. Фаробий, 99А, Ташкент" data-en="Farobiy Street, 99A, Tashkent">Farobiy ko'chasi, 99A, Toshkent</p>
+        <a href="tel:+998990376300" style="color:#60a5fa;font-size:0.9rem;font-weight:600;text-decoration:none;display:block;margin-bottom:10px;">+998 99 037 63 00</a>
+        <p style="color:rgba(255,255,255,0.4);font-size:0.8rem;" data-uz="Du–Sh: 9:00 – 18:00" data-ru="Пн–Сб: 9:00 – 18:00" data-en="Mon–Sat: 9:00 – 18:00">Du–Sh: 9:00 – 18:00</p>
+      </div>
+
+    </div>
+
+    <div style="border-top:1px solid rgba(96,165,250,0.12);margin-top:40px;padding-top:24px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;">
+      <p style="color:rgba(255,255,255,0.3);font-size:0.8rem;">© 2024 Marva Dental Education. <span data-uz="Barcha huquqlar himoyalangan." data-ru="Все права защищены." data-en="All rights reserved.">Barcha huquqlar himoyalangan.</span></p>
+      <p style="color:rgba(255,255,255,0.2);font-size:0.75rem;">Tashkent, Uzbekistan 🇺🇿</p>
+    </div>
+  </div>
+</footer>
+
+
+<!-- Scroll to Top -->
+<button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Scroll to top">
+  <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 15l7-7 7 7"/></svg>
+</button>
+
+
+<script>
+// ─── LANGUAGE SYSTEM ───
+const currentLang = { value: 'uz' };
+
+function applyLanguage(lang) {
+  currentLang.value = lang;
+  // Update all elements with data-<lang>
+  document.querySelectorAll('[data-uz], [data-ru], [data-en]').forEach(el => {
+    const text = el.getAttribute('data-' + lang);
+    if (text) el.textContent = text;
+  });
+  // Update active button
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.lang === lang);
+  });
+  // Update html lang
+  document.documentElement.lang = lang;
+}
+
+document.querySelectorAll('.lang-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    applyLanguage(btn.dataset.lang);
+    // Close mobile menu if open
+    closeMobileMenu();
+  });
+});
+
+// ─── NAVBAR SCROLL ───
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 40);
+  document.getElementById('scrollTop').classList.toggle('visible', window.scrollY > 400);
+}, { passive: true });
+
+// ─── MOBILE MENU ───
+const mobileMenu = document.getElementById('mobile-menu');
+const menuToggleBtn = document.getElementById('menu-toggle');
+const menuCloseBtn = document.getElementById('menu-close');
+
+function setMobileMenuOpen(isOpen) {
+  mobileMenu.classList.toggle('open', isOpen);
+  menuToggleBtn.classList.toggle('active', isOpen);
+  menuToggleBtn.setAttribute('aria-expanded', String(isOpen));
+}
+
+function openMobileMenu() { setMobileMenuOpen(true); }
+function closeMobileMenu() { setMobileMenuOpen(false); }
+function toggleMobileMenu() { setMobileMenuOpen(!mobileMenu.classList.contains('open')); }
+
+menuToggleBtn.addEventListener('click', (e) => {
+  e.stopPropagation();
+  toggleMobileMenu();
+});
+
+menuCloseBtn.addEventListener('click', (e) => {
+  e.stopPropagation();
+  closeMobileMenu();
+});
+
+// Close when clicking a menu link
+mobileMenu.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => closeMobileMenu());
+});
+
+// Close when clicking on the overlay/background (outside actionable items)
+mobileMenu.addEventListener('click', (e) => {
+  if (e.target === mobileMenu) closeMobileMenu();
+});
+
+// Optional: close when clicking outside menu/toggle (e.g., if z-index/layout changes)
+document.addEventListener('click', (e) => {
+  if (!mobileMenu.classList.contains('open')) return;
+  if (mobileMenu.contains(e.target) || menuToggleBtn.contains(e.target)) return;
+  closeMobileMenu();
+});
+
+// ─── INTERSECTION OBSERVER (fade-in) ───
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.fade-up, .fade-left, .fade-right').forEach(el => {
+  observer.observe(el);
+});
+
+// Hero elements auto-animate
+setTimeout(() => {
+  document.querySelectorAll('#hero .fade-up, #hero .fade-left').forEach(el => {
+    el.classList.add('visible');
+  });
+}, 200);
+</script>
+
+</body>
+</html>
